@@ -1,14 +1,18 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <title>Objetos Perdidos IFRN-CM</title>
-</head>
-<body>
+{% extends "base.html" %}
 
-    <h1>Sistema de Objetos Perdidos do IFRN-CM</h1>
+{% block titulo %}Página Inicial{% endblock %}
 
-    <p>Bem-vindo ao sistema!</p>
-
-</body>
-</html>
+{% block conteudo %}
+    {% if usuario_logado %}
+    <h1 id="titulo-inicial">
+        Bem-vindo(a), {{ pessoa.nome }}
+    </h1>
+    <ul>
+        {% for p in pessoa.produtos %}
+            <li>{{ p }}</li>
+        {% endfor %}
+    </ul>
+    {% else %}
+        <h1>Faça o login para continuar</h1>
+    {% endif %}
+{% endblock%}

@@ -1,8 +1,16 @@
 {% extends "base.html" %}
 
 {% block conteudo %}
-    <h1>Login</h1>
-    <form action="login" method="post" novalidate>
+    {% if editar %}
+        <h1 id="titulo-cadastro">
+            Editar Usuário
+        </h1>
+    {% else %}
+        <h1 id="titulo-cadastro">
+            Cadastro de Usuário
+        </h1>
+    {% endif %}
+    <form action="" method="post" novalidate>
         {{ form.hidden_tag() }}
         <p>
             {{ form.username.label }} <br/>
@@ -12,14 +20,15 @@
             {% endfor %}
         </p>
         <p>
-            {{ form.password.label }} <br/>
-            {{ form.password(size=32) }} <br/>
-            {% for error in form.password.errors %}
+            {{ form.email.label }} <br/>
+            {{ form.email(size=32) }} <br/>
+            {% for error in form.email.errors %}
                 <span style="color: red;">{{ error }}</span> <br/>
             {% endfor %}
         </p>
-        <p>{{ form.remember_me() }} {{ form.remember_me.label }}</p>
-        <p>{{ form.submit() }}</p>
+        <p>{{ form.submit(id="salvar") }}</p>
         
     </form>
-{% endblock %}
+{% endblock %} 
+
+
