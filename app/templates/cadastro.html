@@ -1,34 +1,36 @@
 {% extends "base.html" %}
 
-{% block conteudo %}
-    {% if editar %}
-        <h1 id="titulo-cadastro">
-            Editar Usuário
-        </h1>
-    {% else %}
-        <h1 id="titulo-cadastro">
-            Cadastro de Usuário
-        </h1>
-    {% endif %}
-    <form action="" method="post" novalidate>
-        {{ form.hidden_tag() }}
-        <p>
-            {{ form.username.label }} <br/>
-            {{ form.username(size=32) }} <br/>
-            {% for error in form.username.errors %}
-                <span style="color: red;">{{ error }}</span> <br/>
-            {% endfor %}
-        </p>
-        <p>
-            {{ form.email.label }} <br/>
-            {{ form.email(size=32) }} <br/>
-            {% for error in form.email.errors %}
-                <span style="color: red;">{{ error }}</span> <br/>
-            {% endfor %}
-        </p>
-        <p>{{ form.submit(id="salvar") }}</p>
-        
-    </form>
-{% endblock %} 
+{% block content %}
+<div style="max-width: 400px; margin: 50px auto;">
+    <h2>Cadastro</h2>
 
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+          <div style="padding: 10px; margin-bottom: 10px;" class="{{ category }}">{{ message }}</div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+
+    <form action="{{ url_for('cadastro') }}" method="POST">
+        <div>
+            <label for="nome">Nome Completo:</label><br>
+            <input type="text" id="nome" name="nome" required style="width: 100%; padding: 8px;">
+        </div>
+        <br>
+        <div>
+            <label for="email">E-mail:</label><br>
+            <input type="email" id="email" name="email" required style="width: 100%; padding: 8px;">
+        </div>
+        <br>
+        <div>
+            <label for="senha">Senha:</label><br>
+            <input type="password" id="senha" name="senha" required style="width: 100%; padding: 8px;">
+        </div>
+        <br>
+        <button type="submit" style="padding: 10px 20px;">Cadastrar</button>
+    </form>
+    <p>Já tem uma conta? <a href="{{ url_for('login') }}">Faça Login</a></p>
+</div>
+{% endblock %}
 
