@@ -3,6 +3,7 @@ venv/
 .venv/
 env/
 
+
 # Python
 __pycache__/
 *.py[cod]
@@ -30,3 +31,8 @@ htmlcov/
 .idea/
 .DS_Store
 Thumbs.db
+/.venv/Lib/site-packages/alembic-1.19.1.dist-info
+.venv/Lib/site-packages/alembic-1.19.1.dist-info/entry_points.txt
+.venv/Lib/site-packages/alembic-1.19.1.dist-info/entry_points.txt
+.venv/Lib/site-packages/alembic-1.19.1.dist-info/INSTALLER
+/.venv
