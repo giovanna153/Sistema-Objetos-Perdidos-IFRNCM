@@ -5,7 +5,3 @@ routes = Blueprint('routes', __name__)
 @routes.route('/')
 def index():
     return render_template('index.html')
-
-@routes.route('/index')
-def about():
-    return render_template('index.html')
