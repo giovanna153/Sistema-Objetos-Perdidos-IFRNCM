@@ -2,9 +2,13 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_wtf import CSRFProtect
 from flask_migrate import Migrate
+from pathlib import Path
+from config import Config
+
 
 app = Flask(__name__)
 app.config.from_object('config.Config')
+Path(app.instance_path).mkdir(parents=True, exist_ok=True)
 
 
 db = SQLAlchemy(app)

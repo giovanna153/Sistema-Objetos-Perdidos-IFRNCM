@@ -14,12 +14,18 @@ def login():
 
        usuario = Usuario.query.filter_by(email=email).first()
        
-       if usuario and usuario.senha == senha:
+       if usuario and usuario.check_senha(senha):
            flash("Login realizado com sucesso!", "success")
            return redirect(url_for('dashboard'))
        else:
            flash("Email ou senha incorretos.", "error")
+
     return render_template('login.html')
+
+@app.route("/dashboard")
+def dashboard():
+    return render_template("dashboard.html")
+
 
 @app.route("/cadastro", methods=["GET", "POST"])
 def cadastro():

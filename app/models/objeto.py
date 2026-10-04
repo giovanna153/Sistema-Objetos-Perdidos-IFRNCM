@@ -14,11 +14,12 @@ class Objeto(db.Model):
         db.Integer,
         db.ForeignKey('usuarios.id'),
         nullable=False
-    )
-
+    ) # Um Usuario pode ter vários Objeto associados a ele.
+    # 1 Usuario ──────── N Objetos
+    
     categoria_id = db.Column(
         db.Integer,
-        db.ForeignKey('categorias.id'),
+        db.ForeignKey('categoria.id'),
         nullable=False
     )
 

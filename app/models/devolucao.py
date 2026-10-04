@@ -17,7 +17,7 @@ class Devolucao(db.Model):
 
     objeto_id = db.Column(
         db.Integer,
-        db.ForeignKey('objetos.id'),
+        db.ForeignKey('objeto.id'),
         nullable=False,
         unique=True
     )
