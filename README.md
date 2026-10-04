@@ -51,7 +51,7 @@ pip install -r requirements.txt
 Depois de instalar todas as dependências, execute o projeto Flask:
 
 ```bash
-flask run
+flask run --debug
 ```
 
 O terminal exibirá o endereço do servidor. Acesse no navegador:
