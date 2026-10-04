@@ -23,7 +23,7 @@ class Config:
 
     CURRENT_DATABASE = os.getenv(
         "CURRENT_DATABASE",
-        "mysql"
+        "sqlite"
     ).lower()
 
     SQLALCHEMY_TRACK_MODIFICATIONS = False
