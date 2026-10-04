@@ -67,6 +67,7 @@ Depois, execute as migrações:
 
 ```bash
 flask --app run:app db upgrade
+python -m flask run --debug 
 ```
 
 ### 5. Configure as variáveis de ambiente
