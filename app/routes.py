@@ -1,6 +1,12 @@
 from flask import render_template, request, redirect, url_for, flash
+from flask_login import login_user
+from flask_login import login_user, login_required, logout_user
+
 from app import app, db
 from app.models.usuario import Usuario
+from app.forms.cadastro_form import CadastroForm
+from app.forms.login_form import LoginForm
+
 
 @app.route('/')
 def index():
@@ -8,31 +14,48 @@ def index():
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
-    if request.method == "POST":
-       email = request.form.get("email")
-       senha = request.form.get("senha")
-
+    form = LoginForm()
+    if form.validate_on_submit():
+       email = form.email.data
+       senha = form.senha.data
        usuario = Usuario.query.filter_by(email=email).first()
        
        if usuario and usuario.check_senha(senha):
+
+           login_user(usuario)
+           
            flash("Login realizado com sucesso!", "success")
            return redirect(url_for('dashboard'))
        else:
            flash("Email ou senha incorretos.", "error")
 
-    return render_template('login.html')
+    return render_template('login.html', form=form)
+
+
+@app.route("/logout")
+@login_required
+def logout():
+
+    logout_user()
+
+    flash("Logout realizado com sucesso!", "success")
+
+    return redirect(url_for("index"))
+
 
 @app.route("/dashboard")
+@login_required #Só pode acessar /dashboard quem estiver autenticado.
 def dashboard():
     return render_template("dashboard.html")
 
 
 @app.route("/cadastro", methods=["GET", "POST"])
 def cadastro():
-    if request.method == "POST":
-        nome = request.form.get('nome')
-        email = request.form.get('email')
-        senha = request.form.get('senha')
+    form = CadastroForm()
+    if form.validate_on_submit():
+        nome = form.nome.data
+        email = form.email.data
+        senha = form.senha.data
 
         # verificar se o e-mail já está cadastrado
         usuario_existente = Usuario.query.filter_by(email=email).first()
@@ -49,4 +72,4 @@ def cadastro():
         flash('Conta criada com sucesso! Faça login.', 'success')
         return redirect(url_for('login'))
         
-    return render_template('cadastro.html')
+    return render_template('cadastro.html', form=form)
