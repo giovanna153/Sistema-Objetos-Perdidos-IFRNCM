@@ -31,16 +31,16 @@ def login():
 
     return render_template('login.html', form=form)
 
-
 @app.route("/logout")
 @login_required
 def logout():
-
-    logout_user()
-
-    flash("Logout realizado com sucesso!", "success")
-
-    return redirect(url_for("index"))
+    try:
+        logout_user()
+        flash("Logout realizado com sucesso!", "success")
+        return redirect(url_for("index"))
+    except Exception:
+        flash("Ocorreu um erro ao fazer logout. Tente novamente.", "error")
+        return redirect(url_for("dashboard"))
 
 
 @app.route("/dashboard")

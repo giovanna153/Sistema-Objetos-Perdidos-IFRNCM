@@ -2,13 +2,14 @@
 
 {% block content %}
 
-<h1>COOPAC</h1>
+<h1>COOAPAC</h1>
 
 <p>Login realizado com sucesso!</p>
 
 <p>Bem-vindo ao sistema de objetos perdidos.</p>
 
-{% endblock %}
+<a href="{{ url_for('logout') }}" class="btn btn-secondary">
+    Sair
+</a>
 
-#a página que o responsável vê depois de fazer login.
-# talvez seja interessante colocar um botão para o responsável cadastrar um objeto perdido, e outro botão para ver os objetos perdidos cadastrados.
+{% endblock %}
