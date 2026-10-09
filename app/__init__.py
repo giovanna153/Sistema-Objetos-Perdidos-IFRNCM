@@ -24,5 +24,6 @@ def load_user(user_id):
     from app.models.usuario import Usuario
     return Usuario.query.get(int(user_id))
 
+
 from app import routes
-from app.models import usuario 
+from app.models import usuario, categoria, objeto, devolucao

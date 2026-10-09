@@ -7,6 +7,11 @@ from app.models.usuario import Usuario
 from app.forms.cadastro_form import CadastroForm
 from app.forms.login_form import LoginForm
 
+from app.models.objeto import Objeto
+from app.models.categoria import Categoria
+from app.forms.objeto_form import ObjetoForm
+from app.services.objeto_service import cadastrar_objeto
+from flask_login import current_user
 
 @app.route('/')
 def index():
@@ -48,6 +53,53 @@ def logout():
 def dashboard():
     return render_template("dashboard.html")
 
+
+@app.route("/objetos/cadastrar", methods=["GET", "POST"])
+@login_required
+def cadastrar_novo_objeto():
+    form = ObjetoForm()
+
+    categorias = Categoria.query.order_by(Categoria.nome).all()
+
+    form.categoria_id.choices = [
+        (categoria.id, categoria.nome)
+        for categoria in categorias
+    ]
+
+    if form.validate_on_submit():
+        try:
+            cadastrar_objeto(form, usuario_id=current_user.id)
+
+            flash("Objeto cadastrado com sucesso!", "success")
+            return redirect(url_for("dashboard"))
+
+        except Exception:
+            db.session.rollback()
+            flash("Não foi possível cadastrar o objeto.", "error")
+
+    return render_template("cadastrar.html", form=form)
+
+@app.route("/criar-categorias")
+def criar_categorias():
+    categorias_iniciais = [
+        "Eletrônicos",
+        "Documentos",
+        "Acessórios",
+        "Material escolar",
+        "Roupas",
+        "Chaves",
+        "Outros"
+    ]
+
+    for nome in categorias_iniciais:
+        categoria = Categoria.query.filter_by(nome=nome).first()
+
+        if not categoria:
+            db.session.add(Categoria(nome=nome))
+
+    db.session.commit()
+
+    return "Categorias cadastradas com sucesso!"
 
 @app.route("/cadastro", methods=["GET", "POST"])
 def cadastro():

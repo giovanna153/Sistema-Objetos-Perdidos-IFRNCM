@@ -1,0 +1,82 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Cadastrar objeto encontrado</h2>
+
+<form method="POST">
+    {{ form.hidden_tag() }}
+
+    <div>
+        {{ form.nome.label }}
+        {{ form.nome() }}
+        {% for erro in form.nome.errors %}
+            <p>{{ erro }}</p>
+        {% endfor %}
+    </div>
+
+    <div>
+        {{ form.descricao.label }}
+        {{ form.descricao() }}
+        {% for erro in form.descricao.errors %}
+            <p>{{ erro }}</p>
+        {% endfor %}
+    </div>
+
+    <div>
+        {{ form.tipo.label }}
+        {{ form.tipo() }}
+        {% for erro in form.tipo.errors %}
+            <p>{{ erro }}</p>
+        {% endfor %}
+    </div>
+
+    <div>
+        {{ form.data.label }}
+        {{ form.data() }}
+        {% for erro in form.data.errors %}
+            <p>{{ erro }}</p>
+        {% endfor %}
+    </div>
+
+    <div>
+        {{ form.local.label }}
+        {{ form.local() }}
+        {% for erro in form.local.errors %}
+            <p>{{ erro }}</p>
+        {% endfor %}
+    </div>
+
+    <div>
+        {{ form.categoria_id.label }}
+        {{ form.categoria_id() }}
+        {% for erro in form.categoria_id.errors %}
+            <p>{{ erro }}</p>
+        {% endfor %}
+    </div>
+        <div>
+        {{ form.nome_encontrou.label }}
+        {{ form.nome_encontrou() }}
+        {% for erro in form.nome_encontrou.errors %}
+            <p>{{ erro }}</p>
+        {% endfor %}
+    </div>
+
+    <div>
+        {{ form.matricula.label }}
+        {{ form.matricula() }}
+        {% for erro in form.matricula.errors %}
+            <p>{{ erro }}</p>
+        {% endfor %}
+    </div>
+
+    <div>
+        {{ form.turma.label }}
+        {{ form.turma() }}
+        {% for erro in form.turma.errors %}
+            <p>{{ erro }}</p>
+        {% endfor %}
+    </div>
+        {{ form.submit() }}
+    </form>
+{% endblock %}
