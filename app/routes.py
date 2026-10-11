@@ -1,18 +1,17 @@
 from flask import render_template, request, redirect, url_for, flash
-from flask_login import login_user
-from flask_login import login_user, login_required, logout_user
+from flask_login import login_user, login_required, logout_user, current_user
 
 from app import app, db
-from app.models.usuario import Usuario
-from app.forms.cadastro_form import CadastroForm
-from app.forms.login_form import LoginForm
 
+from app.models.usuario import Usuario
 from app.models.objeto import Objeto
 from app.models.categoria import Categoria
-from app.forms.objeto_form import ObjetoForm
-from app.services.objeto_service import cadastrar_objeto
-from flask_login import current_user
 
+from app.forms.cadastro_form import CadastroForm
+from app.forms.login_form import LoginForm
+from app.forms.objeto_form import ObjetoForm
+
+from app.services.objeto_service import cadastrar_objeto
 from app.services.objeto_listagem_service import listar_objetos
 
 @app.route('/')
