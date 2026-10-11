@@ -13,9 +13,12 @@ from app.forms.objeto_form import ObjetoForm
 from app.services.objeto_service import cadastrar_objeto
 from flask_login import current_user
 
+from app.services.objeto_listagem_service import listar_objetos
+
 @app.route('/')
 def index():
-    return render_template('index.html')
+    objetos = listar_objetos()
+    return render_template('index.html', objetos=objetos)
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
@@ -102,6 +105,11 @@ def criar_categorias():
 
     categorias = Categoria.query.all()
     return str([categoria.nome for categoria in categorias])
+
+@app.route("/objetos", methods=["GET"])
+def listar_objetos_cadastrados():
+    objetos = listar_objetos()
+    return render_template("objetos.html", objetos=objetos)
 
 @app.route("/cadastro", methods=["GET", "POST"])
 def cadastro():

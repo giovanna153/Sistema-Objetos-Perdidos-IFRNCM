@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Objetos encontrados</h2>
+
+{% if objetos %}
+    {% for objeto in objetos %}
+        <div class="card mb-3">
+            <div class="card-body">
+                <h5 class="card-title">
+                    {{ objeto.nome_objeto }}
+                </h5>
+
+                <p class="card-text">
+                    <strong>Descrição:</strong>
+                    {{ objeto.descricao }}
+                </p>
+
+                <p class="card-text">
+                    <strong>Data em que foi encontrado:</strong>
+                    {{ objeto.data.strftime('%d/%m/%Y') }}
+                </p>
+
+                <p class="card-text">
+                    <strong>Local:</strong>
+                    {{ objeto.local }}
+                </p>
+
+                <p class="card-text">
+                    <strong>Categoria:</strong>
+                    {{ objeto.categoria.nome }}
+                </p>
+            </div>
+        </div>
+    {% endfor %}
+{% else %}
+    <p>Nenhum objeto foi cadastrado ainda.</p>
+{% endif %}
+
+{% endblock %}
