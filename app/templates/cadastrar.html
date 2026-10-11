@@ -24,14 +24,6 @@
     </div>
 
     <div>
-        {{ form.tipo.label }}
-        {{ form.tipo() }}
-        {% for erro in form.tipo.errors %}
-            <p>{{ erro }}</p>
-        {% endfor %}
-    </div>
-
-    <div>
         {{ form.data.label }}
         {{ form.data() }}
         {% for erro in form.data.errors %}

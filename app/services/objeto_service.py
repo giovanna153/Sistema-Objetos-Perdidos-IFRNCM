@@ -1,4 +1,3 @@
-
 from app import db
 from app.models.objeto import Objeto
 
@@ -7,7 +6,6 @@ def cadastrar_objeto(form, usuario_id):
     objeto = Objeto(
         nome_objeto=form.nome.data,
         descricao=form.descricao.data,
-        tipo=form.tipo.data,
         data=form.data.data,
         local=form.local.data,
         categoria_id=form.categoria_id.data,

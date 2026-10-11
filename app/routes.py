@@ -73,8 +73,9 @@ def cadastrar_novo_objeto():
             flash("Objeto cadastrado com sucesso!", "success")
             return redirect(url_for("dashboard"))
 
-        except Exception:
+        except Exception as erro:
             db.session.rollback()
+            print("ERRO AO CADASTRAR OBJETO:", repr(erro))
             flash("Não foi possível cadastrar o objeto.", "error")
 
     return render_template("cadastrar.html", form=form)
@@ -99,7 +100,8 @@ def criar_categorias():
 
     db.session.commit()
 
-    return "Categorias cadastradas com sucesso!"
+    categorias = Categoria.query.all()
+    return str([categoria.nome for categoria in categorias])
 
 @app.route("/cadastro", methods=["GET", "POST"])
 def cadastro():

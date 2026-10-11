@@ -21,14 +21,6 @@ class ObjetoForm(FlaskForm):
         ]
     )
 
-    tipo = StringField(
-        'Tipo',
-        validators=[
-            DataRequired(message='Informe o tipo do objeto.'),
-            Length(max=50)
-        ]
-    )
-
     data = DateField(
         'Data em que foi encontrado',
         format='%Y-%m-%d',
