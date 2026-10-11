@@ -2,73 +2,113 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h2>Cadastrar objeto encontrado</h2>
+<div class="container py-4">
+    <div class="row justify-content-center">
+        <div class="col-lg-9">
 
-<form method="POST">
-    {{ form.hidden_tag() }}
+            <div class="mb-4">
+                <h1 class="fw-bold">Cadastrar objeto encontrado</h1>
+                <p class="text-secondary">
+                    Preencha os dados abaixo para cadastar um objeto encontrado no campus.
+                </p>
+            </div>
 
-    <div>
-        {{ form.nome.label }}
-        {{ form.nome() }}
-        {% for erro in form.nome.errors %}
-            <p>{{ erro }}</p>
-        {% endfor %}
-    </div>
+            <div class="card border-0 shadow-sm">
+                <div class="card-body p-4 p-md-5">
 
-    <div>
-        {{ form.descricao.label }}
-        {{ form.descricao() }}
-        {% for erro in form.descricao.errors %}
-            <p>{{ erro }}</p>
-        {% endfor %}
-    </div>
+                    <form method="POST">
+                        {{ form.hidden_tag() }}
 
-    <div>
-        {{ form.data.label }}
-        {{ form.data() }}
-        {% for erro in form.data.errors %}
-            <p>{{ erro }}</p>
-        {% endfor %}
-    </div>
+                        <h5 class="fw-bold mb-3">Informações do objeto</h5>
+                        <hr class="mb-4">
 
-    <div>
-        {{ form.local.label }}
-        {{ form.local() }}
-        {% for erro in form.local.errors %}
-            <p>{{ erro }}</p>
-        {% endfor %}
-    </div>
+                        <div class="mb-3">
+                            {{ form.nome.label(class="form-label fw-semibold") }}
+                            {{ form.nome(class="form-control form-control-lg", placeholder="Ex.: Caderno, mochila ou celular") }}
+                            {% for erro in form.nome.errors %}
+                                <div class="text-danger small mt-1">{{ erro }}</div>
+                            {% endfor %}
+                        </div>
 
-    <div>
-        {{ form.categoria_id.label }}
-        {{ form.categoria_id() }}
-        {% for erro in form.categoria_id.errors %}
-            <p>{{ erro }}</p>
-        {% endfor %}
-    </div>
-        <div>
-        {{ form.nome_encontrou.label }}
-        {{ form.nome_encontrou() }}
-        {% for erro in form.nome_encontrou.errors %}
-            <p>{{ erro }}</p>
-        {% endfor %}
-    </div>
+                        <div class="mb-3">
+                            {{ form.descricao.label(class="form-label fw-semibold") }}
+                            {{ form.descricao(class="form-control", rows="3", placeholder="Informe a cor, a marca e outras características") }}
+                            {% for erro in form.descricao.errors %}
+                                <div class="text-danger small mt-1">{{ erro }}</div>
+                            {% endfor %}
+                        </div>
 
-    <div>
-        {{ form.matricula.label }}
-        {{ form.matricula() }}
-        {% for erro in form.matricula.errors %}
-            <p>{{ erro }}</p>
-        {% endfor %}
-    </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                {{ form.data.label(class="form-label fw-semibold") }}
+                                {{ form.data(class="form-control") }}
+                                {% for erro in form.data.errors %}
+                                    <div class="text-danger small mt-1">{{ erro }}</div>
+                                {% endfor %}
+                            </div>
 
-    <div>
-        {{ form.turma.label }}
-        {{ form.turma() }}
-        {% for erro in form.turma.errors %}
-            <p>{{ erro }}</p>
-        {% endfor %}
+                            <div class="col-md-6 mb-3">
+                                {{ form.categoria_id.label(class="form-label fw-semibold") }}
+                                {{ form.categoria_id(class="form-select") }}
+                                {% for erro in form.categoria_id.errors %}
+                                    <div class="text-danger small mt-1">{{ erro }}</div>
+                                {% endfor %}
+                            </div>
+                        </div>
+
+                        <div class="mb-4">
+                            {{ form.local.label(class="form-label fw-semibold") }}
+                            {{ form.local(class="form-control", placeholder="Ex.: Biblioteca, vivência, sala de aula x") }}
+                            {% for erro in form.local.errors %}
+                                <div class="text-danger small mt-1">{{ erro }}</div>
+                            {% endfor %}
+                        </div>
+
+                        <h5 class="fw-bold mb-3">Informações de quem encontrou</h5>
+                        <hr class="mb-4">
+
+                        <div class="mb-3">
+                            {{ form.nome_encontrou.label(class="form-label fw-semibold") }}
+                            {{ form.nome_encontrou(class="form-control", placeholder="Nome completo") }}
+                            {% for erro in form.nome_encontrou.errors %}
+                                <div class="text-danger small mt-1">{{ erro }}</div>
+                            {% endfor %}
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                {{ form.matricula.label(class="form-label fw-semibold") }}
+                                {{ form.matricula(class="form-control", placeholder="Número da matrícula") }}
+                                {% for erro in form.matricula.errors %}
+                                    <div class="text-danger small mt-1">{{ erro }}</div>
+                                {% endfor %}
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                {{ form.turma.label(class="form-label fw-semibold") }}
+                                {{ form.turma(class="form-control", placeholder="Ex.: INFO 3M") }}
+                                {% for erro in form.turma.errors %}
+                                    <div class="text-danger small mt-1">{{ erro }}</div>
+                                {% endfor %}
+                            </div>
+                        </div>
+
+                        <div class="d-flex flex-column flex-sm-row justify-content-end gap-2 mt-4">
+                            <a href="{{ url_for('index') }}" class="btn btn-outline-secondary px-4">
+                                Cancelar
+                            </a>
+                            {{ form.submit(class="btn btn-dark btn-lg px-4") }}
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+
+            <p class="text-secondary small mt-3">
+                Confira as informações antes de cadastrar o objeto.
+            </p>
+
+        </div>
     </div>
-        {{ form.submit() }}
-    </form>
+</div>
 {% endblock %}
