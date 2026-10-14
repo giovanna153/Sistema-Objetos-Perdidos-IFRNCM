@@ -13,12 +13,16 @@ __pycache__/
 .env.*
 
 # Flask
-instance/
+instance/*
+!instance/app.sqlite3
 
 # Banco SQLite local, caso exista durante testes
 *.sqlite
 *.sqlite3
 *.db
+
+# Permitir o banco do projeto
+!instance/app.sqlite3
 
 # Testes e logs
 .pytest_cache/
@@ -36,3 +40,7 @@ Thumbs.db
 .venv/Lib/site-packages/alembic-1.19.1.dist-info/entry_points.txt
 .venv/Lib/site-packages/alembic-1.19.1.dist-info/INSTALLER
 /.venv
+
+!instance/
+instance/*
+!instance/app.sqlite3

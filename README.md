@@ -133,3 +133,17 @@ run.py           # Ponto de entrada
 requirements.txt # Dependências Python
 tests/           # Testes automatizados
 ```
+
+
+
+Comandos para rodar o programa:
+
+Python -m venv .venv
+.venv\Script\activate
+pip install -r requirements.txt
+flask db init
+flask db migrate -m "criar tabelas"
+flask db upgrade 
+flask run
+
+
