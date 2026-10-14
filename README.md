@@ -144,6 +144,6 @@ pip install -r requirements.txt
 flask db init
 flask db migrate -m "criar tabelas"
 flask db upgrade 
-flask run
+flask run --debug
 
 
