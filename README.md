@@ -139,7 +139,7 @@ tests/           # Testes automatizados
 Comandos para rodar o programa:
 
 Python -m venv .venv
-.venv\Script\activate
+.venv\Scripts\activate
 pip install -r requirements.txt
 flask db init
 flask db migrate -m "criar tabelas"
