@@ -26,3 +26,5 @@ class Devolucao(db.Model):
         'Objeto',
         back_populates='devolucao'
     )
+
+    # Adicionar  Descrição -  nome , matricula do aluno que fez a devolução, Turma, data da devolução, nome do objeto devolvido.
