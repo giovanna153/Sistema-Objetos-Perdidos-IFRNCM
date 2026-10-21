@@ -26,5 +26,12 @@ class Devolucao(db.Model):
         'Objeto',
         back_populates='devolucao'
     )
+    nome_aluno = db.Column(db.String(100), nullable=False)
+
+    matricula_aluno = db.Column(db.String(20), nullable=False)
+
+    turma_aluno = db.Column(db.String(10), nullable=False)
+
+    nome_objeto = db.Column(db.String(100), nullable=False)
 
     # Adicionar  Descrição -  nome , matricula do aluno que fez a devolução, Turma, data da devolução, nome do objeto devolvido.
