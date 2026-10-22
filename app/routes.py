@@ -14,6 +14,8 @@ from app.forms.objeto_form import ObjetoForm
 from app.services.objeto_service import cadastrar_objeto
 from app.services.objeto_listagem_service import listar_objetos
 
+from app.models.local import Local
+
 @app.route('/')
 def index():
     objetos = listar_objetos()
@@ -56,16 +58,38 @@ def dashboard():
     return render_template("dashboard.html")
 
 
+
 @app.route("/objetos/cadastrar", methods=["GET", "POST"])
 @login_required
 def cadastrar_novo_objeto():
     form = ObjetoForm()
 
     categorias = Categoria.query.order_by(Categoria.nome).all()
-
     form.categoria_id.choices = [
         (categoria.id, categoria.nome)
         for categoria in categorias
+    ]
+
+    locais_iniciais = [
+        "Prédio principal",
+        "Vivência",
+        "Prédio anexo",
+        "Núcleo",
+        "Ginásio"
+    ]
+
+    for nome in locais_iniciais:
+        local_existente = Local.query.filter_by(nome=nome).first()
+
+        if not local_existente:
+            db.session.add(Local(nome=nome))
+
+    db.session.commit()
+
+    locais = Local.query.order_by(Local.nome).all()
+    form.local_id.choices = [
+        (local.id, local.nome)
+        for local in locais
     ]
 
     if form.validate_on_submit():
@@ -81,6 +105,7 @@ def cadastrar_novo_objeto():
             flash("Não foi possível cadastrar o objeto.", "error")
 
     return render_template("cadastrar.html", form=form)
+
 
 @app.route("/criar-categorias")
 def criar_categorias():

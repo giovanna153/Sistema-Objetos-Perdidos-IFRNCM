@@ -56,13 +56,23 @@
                             </div>
                         </div>
 
-                        <div class="mb-4">
-                            {{ form.local.label(class="form-label fw-semibold") }}
-                            {{ form.local(class="form-control", placeholder="Ex.: Biblioteca, vivência, sala de aula x") }}
-                            {% for erro in form.local.errors %}
+
+                        <div class="mb-3">
+                            {{ form.local_id.label(class="form-label fw-semibold") }}
+                            {{ form.local_id(class="form-select") }}
+                            {% for erro in form.local_id.errors %}
                                 <div class="text-danger small mt-1">{{ erro }}</div>
                             {% endfor %}
                         </div>
+
+                        <div class="mb-4">
+                            {{ form.detalhes_local.label(class="form-label fw-semibold") }}
+                            {{ form.detalhes_local(class="form-control", placeholder="Ex.: sala 3, corredor do segundo andar ou perto da cantina") }}
+                            {% for erro in form.detalhes_local.errors %}
+                                <div class="text-danger small mt-1">{{ erro }}</div>
+                            {% endfor %}
+                        </div>
+
 
                         <h5 class="fw-bold mb-3">Informações de quem encontrou</h5>
                         <hr class="mb-4">

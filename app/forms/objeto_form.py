@@ -1,10 +1,10 @@
+
 from flask_wtf import FlaskForm
 from wtforms import StringField, TextAreaField, DateField, SelectField, SubmitField
 from wtforms.validators import DataRequired, Length
 
 
 class ObjetoForm(FlaskForm):
-
     nome = StringField(
         'Nome do objeto',
         validators=[
@@ -29,10 +29,18 @@ class ObjetoForm(FlaskForm):
         ]
     )
 
-    local = StringField(
+    local_id = SelectField(
         'Local onde foi encontrado',
+        coerce=int,
         validators=[
-            DataRequired(message='Informe o local.'),
+            DataRequired(message='Selecione um local.')
+        ]
+    )
+
+    detalhes_local = StringField(
+        'Detalhes do local',
+        validators=[
+            DataRequired(message='Informe os detalhes do local.'),
             Length(max=100)
         ]
     )
@@ -47,17 +55,26 @@ class ObjetoForm(FlaskForm):
 
     nome_encontrou = StringField(
         'Nome de quem encontrou',
-        validators=[DataRequired(message='Informe o nome de quem encontrou.'), Length(max=100)]
+        validators=[
+            DataRequired(message='Informe o nome de quem encontrou.'),
+            Length(max=100)
+        ]
     )
 
     matricula = StringField(
         'Matrícula',
-        validators=[DataRequired(message='Informe a matrícula.'), Length(max=20)]
+        validators=[
+            DataRequired(message='Informe a matrícula.'),
+            Length(max=20)
+        ]
     )
 
     turma = StringField(
         'Turma',
-        validators=[DataRequired(message='Informe a turma.'), Length(max=50)]
+        validators=[
+            DataRequired(message='Informe a turma.'),
+            Length(max=50)
+        ]
     )
 
     submit = SubmitField('Cadastrar objeto')
