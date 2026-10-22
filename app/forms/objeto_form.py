@@ -1,7 +1,7 @@
 
 from flask_wtf import FlaskForm
-from wtforms import StringField, TextAreaField, DateField, SelectField, SubmitField
-from wtforms.validators import DataRequired, Length
+from wtforms import StringField, TextAreaField, DateField, SelectField, SubmitField, FileField
+from wtforms.validators import DataRequired, Length, Optional
 
 
 class ObjetoForm(FlaskForm):
@@ -75,6 +75,11 @@ class ObjetoForm(FlaskForm):
             DataRequired(message='Informe a turma.'),
             Length(max=50)
         ]
+    )
+
+    foto = FileField(
+        'Foto do objeto',
+        validators=[Optional()]
     )
 
     submit = SubmitField('Cadastrar objeto')

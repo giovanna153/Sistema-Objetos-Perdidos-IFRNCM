@@ -16,6 +16,9 @@ from app.services.objeto_listagem_service import listar_objetos
 
 from app.models.local import Local
 
+import os
+from werkzeug.utils import secure_filename
+
 @app.route('/')
 def index():
     objetos = listar_objetos()
@@ -93,8 +96,43 @@ def cadastrar_novo_objeto():
     ]
 
     if form.validate_on_submit():
+        caminho_foto = None
+
         try:
-            cadastrar_objeto(form, usuario_id=current_user.id)
+            arquivo = form.foto.data
+
+            if arquivo and arquivo.filename:
+                extensao = os.path.splitext(arquivo.filename)[1].lower()
+
+                if extensao not in [".jpg", ".jpeg", ".png"]:
+                    flash("Selecione uma imagem JPG ou PNG.", "error")
+                    return render_template("cadastrar.html", form=form)
+
+                nome_arquivo = secure_filename(arquivo.filename)
+
+                nome_arquivo = f"{current_user.id}_{nome_arquivo}"
+
+                pasta_uploads = os.path.join(
+                    app.root_path,
+                    "static",
+                    "uploads"
+                )
+                os.makedirs(pasta_uploads, exist_ok=True)
+
+                caminho_completo = os.path.join(
+                    pasta_uploads,
+                    nome_arquivo
+                )
+
+                arquivo.save(caminho_completo)
+
+                caminho_foto = f"uploads/{nome_arquivo}"
+
+            cadastrar_objeto(
+                form,
+                usuario_id=current_user.id,
+                foto=caminho_foto
+            )
 
             flash("Objeto cadastrado com sucesso!", "success")
             return redirect(url_for("dashboard"))
@@ -105,7 +143,6 @@ def cadastrar_novo_objeto():
             flash("Não foi possível cadastrar o objeto.", "error")
 
     return render_template("cadastrar.html", form=form)
-
 
 @app.route("/criar-categorias")
 def criar_categorias():

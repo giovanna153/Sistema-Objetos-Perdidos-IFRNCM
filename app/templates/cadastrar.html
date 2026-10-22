@@ -9,14 +9,14 @@
             <div class="mb-4">
                 <h1 class="fw-bold">Cadastrar objeto encontrado</h1>
                 <p class="text-secondary">
-                    Preencha os dados abaixo para cadastar um objeto encontrado no campus.
+                    Preencha os dados abaixo para cadastrar um objeto encontrado no campus.
                 </p>
             </div>
 
             <div class="card border-0 shadow-sm">
                 <div class="card-body p-4 p-md-5">
 
-                    <form method="POST">
+                    <form method="POST" enctype="multipart/form-data">
                         {{ form.hidden_tag() }}
 
                         <h5 class="fw-bold mb-3">Informações do objeto</h5>
@@ -38,6 +38,17 @@
                             {% endfor %}
                         </div>
 
+                        <div class="mb-4">
+                            {{ form.foto.label(class="form-label fw-semibold") }}
+                            {{ form.foto(class="form-control", accept=".jpg,.jpeg,.png") }}
+                            <div class="form-text">
+                                Selecione uma foto do objeto. Formatos aceitos: JPG e PNG.
+                            </div>
+                            {% for erro in form.foto.errors %}
+                                <div class="text-danger small mt-1">{{ erro }}</div>
+                            {% endfor %}
+                        </div>
+
                         <div class="row">
                             <div class="col-md-6 mb-3">
                                 {{ form.data.label(class="form-label fw-semibold") }}
@@ -47,6 +58,7 @@
                                 {% endfor %}
                             </div>
 
+                            
                             <div class="col-md-6 mb-3">
                                 {{ form.categoria_id.label(class="form-label fw-semibold") }}
                                 {{ form.categoria_id(class="form-select") }}
@@ -56,7 +68,6 @@
                             </div>
                         </div>
 
-
                         <div class="mb-3">
                             {{ form.local_id.label(class="form-label fw-semibold") }}
                             {{ form.local_id(class="form-select") }}
@@ -65,6 +76,7 @@
                             {% endfor %}
                         </div>
 
+
                         <div class="mb-4">
                             {{ form.detalhes_local.label(class="form-label fw-semibold") }}
                             {{ form.detalhes_local(class="form-control", placeholder="Ex.: sala 3, corredor do segundo andar ou perto da cantina") }}
@@ -72,7 +84,6 @@
                                 <div class="text-danger small mt-1">{{ erro }}</div>
                             {% endfor %}
                         </div>
-
 
                         <h5 class="fw-bold mb-3">Informações de quem encontrou</h5>
                         <hr class="mb-4">

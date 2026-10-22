@@ -9,6 +9,7 @@ class Objeto(db.Model):
     nome_objeto = db.Column(db.String(50), nullable=False)
     descricao = db.Column(db.String(200), nullable=False)
     data = db.Column(db.Date, nullable=False)
+    foto = db.Column(db.String(255), nullable=True)
 
     local_id = db.Column(
         db.Integer,

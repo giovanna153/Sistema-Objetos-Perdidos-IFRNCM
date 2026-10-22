@@ -1,45 +1,58 @@
+
 {% extends "base.html" %}
 
 {% block content %}
-<h2>Objetos encontrados</h2>
+<div class="container py-4">
 
-{% if objetos %}
-    {% for objeto in objetos %}
-        <div class="card mb-3">
-            <div class="card-body">
-                <h5 class="card-title">
-                    {{ objeto.nome_objeto }}
-                </h5>
+    <h2 class="fw-bold mb-4">Objetos encontrados</h2>
 
-                <p class="card-text">
-                    <strong>Descrição:</strong>
-                    {{ objeto.descricao }}
-                </p>
+    {% if objetos %}
+        {% for objeto in objetos %}
+            <div class="card mb-4 border-0 shadow-sm">
+                {% if objeto.foto %}
+                    <img
+                        src="{{ url_for('static', filename=objeto.foto) }}"
+                        class="card-img-top"
+                        alt="Foto de {{ objeto.nome_objeto }}"
+                        style="max-height: 350px; object-fit: contain; background-color: #f8f9fa;"
+                    >
+                {% endif %}
 
-                <p class="card-text">
-                    <strong>Data em que foi encontrado:</strong>
-                    {{ objeto.data.strftime('%d/%m/%Y') }}
-                </p>
+                <div class="card-body">
+                    <h5 class="card-title fw-bold">
+                        {{ objeto.nome_objeto }}
+                    </h5>
 
-                <p class="card-text">
-                    <strong>Local:</strong>
-                    {{ objeto.local.nome }}
-                </p>
+                    <p class="card-text">
+                        <strong>Descrição:</strong>
+                        {{ objeto.descricao }}
+                    </p>
 
-                <p class="card-text">
-                    <strong>Detalhes:</strong> 
-                    {{ objeto.detalhes_local }}
-                </p>
+                    <p class="card-text">
+                        <strong>Data em que foi encontrado:</strong>
+                        {{ objeto.data.strftime('%d/%m/%Y') }}
+                    </p>
 
-                <p class="card-text">
-                    <strong>Categoria:</strong>
-                    {{ objeto.categoria.nome }}
-                </p>
+                    <p class="card-text">
+                        <strong>Local:</strong>
+                        {{ objeto.local.nome }}
+                    </p>
+
+                    <p class="card-text">
+                        <strong>Detalhes:</strong>
+                        {{ objeto.detalhes_local }}
+                    </p>
+
+                    <p class="card-text">
+                        <strong>Categoria:</strong>
+                        {{ objeto.categoria.nome }}
+                    </p>
+                </div>
             </div>
-        </div>
-    {% endfor %}
-{% else %}
-    <p>Nenhum objeto foi cadastrado ainda.</p>
-{% endif %}
+        {% endfor %}
+    {% else %}
+        <p>Nenhum objeto foi cadastrado ainda.</p>
+    {% endif %}
 
+</div>
 {% endblock %}
