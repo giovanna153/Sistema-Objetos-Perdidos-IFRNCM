@@ -144,9 +144,8 @@
 
         </div>
     </div>
+  
 
-
-    
 <div id="listaObjetos">
 
     {% if objetos %}
@@ -159,6 +158,7 @@
 
                     <section class="card h-100 border-0 shadow-sm">
 
+                        
                         {% if objeto.foto %}
                             <img
                                 src="{{ url_for('static', filename=objeto.foto) }}"
@@ -171,44 +171,135 @@
                                 class="d-flex align-items-center justify-content-center bg-light text-secondary"
                                 style="height: 220px;"
                             >
-                                <span>Sem foto disponível</span>
+                                Sem foto disponível
                             </div>
                         {% endif %}
 
                         <div class="card-body d-flex flex-column">
 
-                            <h4 class="card-title fw-bold">
-                                {{ objeto.nome_objeto }}
-                            </h4>
-
-                            <p class="card-text">
-                                <strong>Descrição:</strong>
-                                {{ objeto.descricao }}
-                            </p>
-
-                            <p class="card-text">
-                                <strong>Data:</strong>
-                                {{ objeto.data.strftime('%d/%m/%Y') }}
-                            </p>
-
-                            <p class="card-text">
+                            
+                            <p class="card-text mb-2">
                                 <strong>Local:</strong>
                                 {{ objeto.local.nome }}
                             </p>
 
-                            <p class="card-text">
-                                <strong>Detalhes:</strong>
-                                {{ objeto.detalhes_local }}
+                            
+                            <p class="card-text mb-3">
+                                <strong>Data:</strong>
+                                {{ objeto.data.strftime('%d/%m/%Y') }}
                             </p>
 
-                            <p class="card-text mb-0">
-                                <strong>Categoria:</strong>
-                                {{ objeto.categoria.nome }}
-                            </p>
+                            
+                            <button
+                                type="button"
+                                class="btn btn-primary mt-auto"
+                                data-bs-toggle="modal"
+                                data-bs-target="#modalObjeto{{ objeto.id }}"
+                            >
+                                Ver mais informações
+                            </button>
 
                         </div>
 
                     </section>
+
+                </div>
+
+
+            
+                <div
+                    class="modal fade"
+                    id="modalObjeto{{ objeto.id }}"
+                    tabindex="-1"
+                    aria-labelledby="tituloModal{{ objeto.id }}"
+                    aria-hidden="true"
+                >
+
+                    <div class="modal-dialog modal-dialog-centered">
+
+                        <div class="modal-content">
+
+                        
+                            <div class="modal-header">
+
+                                <h5
+                                    class="modal-title fw-bold"
+                                    id="tituloModal{{ objeto.id }}"
+                                >
+                                    {{ objeto.nome_objeto }}
+                                </h5>
+
+                                <button
+                                    type="button"
+                                    class="btn-close"
+                                    data-bs-dismiss="modal"
+                                    aria-label="Fechar"
+                                ></button>
+
+                            </div>
+
+
+
+                            <div class="modal-body">
+
+                                {% if objeto.foto %}
+                                    <img
+                                        src="{{ url_for('static', filename=objeto.foto) }}"
+                                        class="img-fluid rounded mb-3"
+                                        alt="Foto de {{ objeto.nome_objeto }}"
+                                        style="width: 100%; max-height: 250px; object-fit: contain; background-color: #f8f9fa;"
+                                    >
+                                {% endif %}
+
+                                <p>
+                                    <strong>Nome do objeto:</strong>
+                                    {{ objeto.nome_objeto }}
+                                </p>
+
+                                <p>
+                                    <strong>Descrição:</strong>
+                                    {{ objeto.descricao }}
+                                </p>
+
+                                <p>
+                                    <strong>Data:</strong>
+                                    {{ objeto.data.strftime('%d/%m/%Y') }}
+                                </p>
+
+                                <p>
+                                    <strong>Local:</strong>
+                                    {{ objeto.local.nome }}
+                                </p>
+
+                                <p>
+                                    <strong>Detalhes do local:</strong>
+                                    {{ objeto.detalhes_local }}
+                                </p>
+
+                                <p class="mb-0">
+                                    <strong>Categoria:</strong>
+                                    {{ objeto.categoria.nome }}
+                                </p>
+
+                            </div>
+
+
+                            
+                            <div class="modal-footer">
+
+                                <button
+                                    type="button"
+                                    class="btn btn-secondary"
+                                    data-bs-dismiss="modal"
+                                >
+                                    Fechar
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </div>
 
                 </div>
 
@@ -223,5 +314,5 @@
     {% endif %}
 
 </div>
-
 {% endblock %}
+
