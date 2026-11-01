@@ -123,23 +123,22 @@ def cadastrar_novo_objeto():
 
 
         try:
-            arquivo = form.foto.data
+            arquivo = request.files.get("foto_camera")
 
+            if not arquivo or not arquivo.filename:
+                arquivo = request.files.get("foto_galeria")
+
+            caminho_foto = None
 
             if arquivo and arquivo.filename:
                 extensao = os.path.splitext(arquivo.filename)[1].lower()
-
 
                 if extensao not in [".jpg", ".jpeg", ".png"]:
                     flash("Selecione uma imagem JPG ou PNG.", "error")
                     return render_template("cadastrar.html", form=form)
 
-
                 nome_arquivo = secure_filename(arquivo.filename)
-
-
                 nome_arquivo = f"{current_user.id}_{nome_arquivo}"
-
 
                 pasta_uploads = os.path.join(
                     app.root_path,
@@ -148,18 +147,14 @@ def cadastrar_novo_objeto():
                 )
                 os.makedirs(pasta_uploads, exist_ok=True)
 
-
                 caminho_completo = os.path.join(
                     pasta_uploads,
                     nome_arquivo
                 )
 
-
                 arquivo.save(caminho_completo)
 
-
                 caminho_foto = f"uploads/{nome_arquivo}"
-
 
             cadastrar_objeto(
                 form,
@@ -167,10 +162,13 @@ def cadastrar_novo_objeto():
                 foto=caminho_foto
             )
 
-
             flash("Objeto cadastrado com sucesso!", "success")
             return redirect(url_for("dashboard"))
 
+        except Exception as erro:
+            db.session.rollback()
+            print("ERRO AO CADASTRAR OBJETO:", repr(erro))
+            flash("Não foi possível cadastrar o objeto.", "error")
 
         except Exception as erro:
             db.session.rollback()

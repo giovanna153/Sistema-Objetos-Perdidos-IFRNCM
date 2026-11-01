@@ -39,14 +39,32 @@
                         </div>
 
                         <div class="mb-4">
-                            {{ form.foto.label(class="form-label fw-semibold") }}
-                            {{ form.foto(class="form-control", accept=".jpg,.jpeg,.png") }}
-                            <div class="form-text">
-                                Selecione uma foto do objeto. Formatos aceitos: JPG e PNG.
+                            <label class="form-label fw-semibold">Foto do objeto</label>
+
+                            <div class="mb-2">
+                                <label class="form-label">Tirar foto (celular)</label>
+                                <input
+                                    type="file"
+                                    name="foto_camera"
+                                    class="form-control"
+                                    accept="image/*"
+                                    capture="environment"
+                                >
                             </div>
-                            {% for erro in form.foto.errors %}
-                                <div class="text-danger small mt-1">{{ erro }}</div>
-                            {% endfor %}
+
+                            <div class="mb-2">
+                                <label class="form-label">Escolher imagem</label>
+                                <input
+                                    type="file"
+                                    name="foto_galeria"
+                                    class="form-control"
+                                    accept="image/*"
+                                >
+                            </div>
+
+                            <div class="form-text">
+                                Formatos aceitos: JPG e PNG.
+                            </div>
                         </div>
 
                         <div class="row">
