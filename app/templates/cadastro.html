@@ -1,51 +1,102 @@
+
 {% extends "base.html" %}
 
 {% block content %}
 
-<div style="max-width: 400px; margin: 50px auto;">
+<div class="pagina-login">
 
-    <h2>Cadastro de Responsável</h2>
+    <div class="card-login">
 
-    <form method="POST">
+        <div class="login-cabecalho">
 
-        {{ form.hidden_tag() }}
+            <div class="login-icone">
+                <i class="fa-solid fa-user-plus"></i>
+            </div>
 
-        <div>
-            {{ form.nome.label }}
-            {{ form.nome(style="width: 100%; padding: 8px;") }}
+            <h2>Cadastro de Responsável</h2>
 
-            {% for erro in form.nome.errors %}
-                <small style="color: red;">{{ erro }}</small>
-            {% endfor %}
+            <p>Preencha os dados para cadastrar um responsável pelo sistema.</p>
+
         </div>
 
-        <br>
+        <form method="POST">
 
-        <div>
-            {{ form.email.label }}
-            {{ form.email(style="width: 100%; padding: 8px;") }}
+            {{ form.hidden_tag() }}
 
-            {% for erro in form.email.errors %}
-                <small style="color: red;">{{ erro }}</small>
-            {% endfor %}
+            <!-- NOME -->
+            <div class="campo-login">
+
+                {{ form.nome.label }}
+
+                <div class="campo-input">
+                    <i class="fa-solid fa-user"></i>
+
+                    {{ form.nome(
+                        class="form-control",
+                        placeholder="Digite o nome completo"
+                    ) }}
+                </div>
+
+                {% for erro in form.nome.errors %}
+                    <small class="erro-login">{{ erro }}</small>
+                {% endfor %}
+
+            </div>
+
+            <!-- E-MAIL -->
+            <div class="campo-login">
+
+                {{ form.email.label }}
+
+                <div class="campo-input">
+                    <i class="fa-regular fa-envelope"></i>
+
+                    {{ form.email(
+                        class="form-control",
+                        placeholder="Digite o e-mail"
+                    ) }}
+                </div>
+
+                {% for erro in form.email.errors %}
+                    <small class="erro-login">{{ erro }}</small>
+                {% endfor %}
+
+            </div>
+
+            <!-- SENHA -->
+            <div class="campo-login">
+
+                {{ form.senha.label }}
+
+                <div class="campo-input">
+                    <i class="fa-solid fa-lock"></i>
+
+                    {{ form.senha(
+                        class="form-control",
+                        placeholder="Crie uma senha"
+                    ) }}
+                </div>
+
+                {% for erro in form.senha.errors %}
+                    <small class="erro-login">{{ erro }}</small>
+                {% endfor %}
+
+            </div>
+
+            {{ form.submit(
+                class="botao-login",
+                value="Cadastrar responsável"
+            ) }}
+
+        </form>
+
+        <div class="login-rodape">
+            <i class="fa-solid fa-shield-halved"></i>
+            Cadastro exclusivo para responsáveis pelo sistema
         </div>
 
-        <br>
+    </div>
 
-        <div>
-            {{ form.senha.label }}
-            {{ form.senha(style="width: 100%; padding: 8px;") }}
-
-            {% for erro in form.senha.errors %}
-                <small style="color: red;">{{ erro }}</small>
-            {% endfor %}
-        </div>
-
-        <br>
-
-        {{ form.submit(style="padding: 10px 20px;") }}
-
-    </form>
 </div>
 
 {% endblock %}
