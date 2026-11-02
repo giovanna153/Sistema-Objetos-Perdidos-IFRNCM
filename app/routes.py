@@ -8,15 +8,22 @@ from app import app, db
 from app.models.usuario import Usuario
 from app.models.objeto import Objeto
 from app.models.categoria import Categoria
+from app.models.devolucao import Devolucao
 
 
 from app.forms.cadastro_form import CadastroForm
 from app.forms.login_form import LoginForm
 from app.forms.objeto_form import ObjetoForm
+from app.forms.devolucao_form import DevolucaoForm
 
 
 from app.services.objeto_service import cadastrar_objeto
 from app.services.objeto_listagem_service import listar_objetos
+from app.services.devolucao_service import cadastrar_devolucao
+from app.services.devolucao_service import (
+    cadastrar_devolucao,
+    listar_devolucoes
+)
 
 
 from app.models.local import Local
@@ -229,8 +236,50 @@ def listar_objetos_cadastrados():
         local_selecionado=local
     )
 
+@app.route('/devolucao', methods=['GET', 'POST'])
+@login_required
+def devolucao():
 
+    form = DevolucaoForm()
 
+    # Buscar somente objetos que ainda não foram devolvidos
+    objetos = Objeto.query.outerjoin(Devolucao).filter(
+        Devolucao.id.is_(None)
+    ).all()
+
+    form.objeto_id.choices = [
+        (objeto.id, objeto.nome_objeto)
+        for objeto in objetos
+    ]
+
+    if form.validate_on_submit():
+
+        try:
+            cadastrar_devolucao(form)
+
+            flash('Devolução registrada com sucesso!', 'success')
+            return redirect(url_for('devolucao'))
+
+        except Exception as erro:
+            db.session.rollback()
+            print("ERRO AO CADASTRAR DEVOLUÇÃO:", repr(erro))
+            flash('Não foi possível registrar a devolução.', 'error')
+
+    return render_template(
+        'devolucao.html',
+        form=form
+    )
+
+@app.route('/admin/devolucoes')
+@login_required
+def historico_devolucoes():
+
+    devolucoes = listar_devolucoes()
+
+    return render_template(
+        'objeto_devolvidos.html',
+        devolucoes=devolucoes
+    )
 
 @app.route("/cadastro", methods=["GET", "POST"])
 @login_required

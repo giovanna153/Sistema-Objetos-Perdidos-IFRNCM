@@ -1,0 +1,72 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container py-4">
+
+    <h2 class="fw-bold mb-4">Cadastrar devolução</h2>
+
+    <form method="POST">
+
+        {{ form.hidden_tag() }}
+
+        <div class="mb-3">
+            {{ form.objeto_id.label(class="form-label") }}
+
+            {{ form.objeto_id(class="form-select") }}
+
+            {% for erro in form.objeto_id.errors %}
+                <div class="text-danger">{{ erro }}</div>
+            {% endfor %}
+
+            {% if not form.objeto_id.choices %}
+                <small class="text-muted">
+                    Não existem objetos disponíveis para devolução.
+                </small>
+            {% endif %}
+        </div>
+
+        <div class="mb-3">
+            {{ form.nome_aluno.label(class="form-label") }}
+            {{ form.nome_aluno(class="form-control") }}
+
+            {% for erro in form.nome_aluno.errors %}
+                <div class="text-danger">{{ erro }}</div>
+            {% endfor %}
+        </div>
+
+        <div class="mb-3">
+            {{ form.matricula_aluno.label(class="form-label") }}
+            {{ form.matricula_aluno(class="form-control") }}
+
+            {% for erro in form.matricula_aluno.errors %}
+                <div class="text-danger">{{ erro }}</div>
+            {% endfor %}
+        </div>
+
+        <div class="mb-3">
+            {{ form.turma_aluno.label(class="form-label") }}
+            {{ form.turma_aluno(class="form-control") }}
+
+            {% for erro in form.turma_aluno.errors %}
+                <div class="text-danger">{{ erro }}</div>
+            {% endfor %}
+        </div>
+
+        <div class="mb-3">
+            {{ form.observacao.label(class="form-label") }}
+            {{ form.observacao(class="form-control", rows="4") }}
+
+            {% for erro in form.observacao.errors %}
+                <div class="text-danger">{{ erro }}</div>
+            {% endfor %}
+        </div>
+
+        {{ form.submit(class="btn btn-primary") }}
+
+    </form>
+
+</div>
+
+{% endblock %}
