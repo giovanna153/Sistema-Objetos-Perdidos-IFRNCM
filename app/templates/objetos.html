@@ -148,11 +148,11 @@
 
 <div id="listaObjetos">
 
-    {% if objetos %}
+    {% if objetos.items %}
 
         <div class="row g-4">
 
-            {% for objeto in objetos %}
+            {% for objeto in objetos.items %}
 
                 <div class="col-12 col-md-6 col-md-4 col-lg-3">
 
@@ -305,14 +305,71 @@
 
             {% endfor %}
 
-        </div>
+  </div>
+
+        {% if objetos.pages > 1 %}
+            <nav aria-label="Navegação de páginas" class="mt-4">
+                <ul class="pagination justify-content-center">
+
+                    <!-- Botão anterior -->
+                    <li class="page-item {% if not objetos.has_prev %}disabled{% endif %}">
+                        {% if objetos.has_prev %}
+                            <a class="page-link"
+                               href="{{ url_for(
+                                   'listar_objetos_cadastrados',
+                                   page=objetos.prev_num,
+                                   recentes='7' if recentes else None,
+                                   categoria=categoria_selecionada,
+                                   local=local_selecionado
+                               ) }}">
+                                Anterior
+                            </a>
+                        {% else %}
+                            <span class="page-link">Anterior</span>
+                        {% endif %}
+                    </li>
+
+                    <!-- Números das páginas -->
+                    {% for numero in range(1, objetos.pages + 1) %}
+                        <li class="page-item {% if numero == objetos.page %}active{% endif %}">
+                            <a class="page-link"
+                               href="{{ url_for(
+                                   'listar_objetos_cadastrados',
+                                   page=numero,
+                                   recentes='7' if recentes else None,
+                                   categoria=categoria_selecionada,
+                                   local=local_selecionado
+                               ) }}">
+                                {{ numero }}
+                            </a>
+                        </li>
+                    {% endfor %}
+
+                    <!-- Botão próxima -->
+                    <li class="page-item {% if not objetos.has_next %}disabled{% endif %}">
+                        {% if objetos.has_next %}
+                            <a class="page-link"
+                               href="{{ url_for(
+                                   'listar_objetos_cadastrados',
+                                   page=objetos.next_num,
+                                   recentes='7' if recentes else None,
+                                   categoria=categoria_selecionada,
+                                   local=local_selecionado
+                               ) }}">
+                                Próxima
+                            </a>
+                        {% else %}
+                            <span class="page-link">Próxima</span>
+                        {% endif %}
+                    </li>
+
+                </ul>
+            </nav>
+        {% endif %}
 
     {% else %}
 
         <p>Nenhum objeto corresponde aos filtros selecionados.</p>
 
     {% endif %}
-
-</div>
 {% endblock %}
-

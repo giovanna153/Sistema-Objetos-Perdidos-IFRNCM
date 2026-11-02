@@ -1,10 +1,9 @@
 from datetime import date, timedelta
-
 from app.models.objeto import Objeto
 from app.models.devolucao import Devolucao
 
 
-def listar_objetos(dias=None, categoria=None, local=None):
+def listar_objetos(dias=None, categoria=None, local=None, pagina=1):
 
     # Buscar somente objetos que ainda não foram devolvidos
     consulta = Objeto.query.outerjoin(Devolucao).filter(
@@ -34,4 +33,11 @@ def listar_objetos(dias=None, categoria=None, local=None):
         )
 
     # Ordenar do mais recente para o mais antigo
-    return consulta.order_by(Objeto.id.desc()).all()
+    consulta = consulta.order_by(Objeto.id.desc())
+
+    # Paginação: 8 objetos por página
+    return consulta.paginate(
+        page=pagina,
+        per_page=8,
+        error_out=False
+    )

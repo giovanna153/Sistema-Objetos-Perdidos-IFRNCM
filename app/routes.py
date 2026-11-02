@@ -9,7 +9,7 @@ from app.models.usuario import Usuario
 from app.models.objeto import Objeto
 from app.models.categoria import Categoria
 from app.models.devolucao import Devolucao
-
+from app.models.local import Local
 
 from app.forms.cadastro_form import CadastroForm
 from app.forms.login_form import LoginForm
@@ -20,13 +20,8 @@ from app.forms.devolucao_form import DevolucaoForm
 from app.services.objeto_service import cadastrar_objeto
 from app.services.objeto_listagem_service import listar_objetos
 from app.services.devolucao_service import cadastrar_devolucao
-from app.services.devolucao_service import (
-    cadastrar_devolucao,
-    listar_devolucoes
-)
+from app.services.devolucao_service import (cadastrar_devolucao, listar_devolucoes)
 
-
-from app.models.local import Local
 
 
 import os
@@ -220,13 +215,15 @@ def listar_objetos_cadastrados():
     categoria = request.args.get("categoria", "todos")
     local = request.args.get("local", "todos")
 
+    # Identificar a página solicitada
+    pagina = request.args.get("page", 1, type=int)
 
     objetos = listar_objetos(
         dias=7 if recentes else None,
         categoria=categoria,
-        local=local
+        local=local,
+        pagina=pagina
     )
-
 
     return render_template(
         "objetos.html",
@@ -235,7 +232,6 @@ def listar_objetos_cadastrados():
         categoria_selecionada=categoria,
         local_selecionado=local
     )
-
 @app.route('/devolucao', methods=['GET', 'POST'])
 @login_required
 def devolucao():

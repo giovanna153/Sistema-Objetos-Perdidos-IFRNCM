@@ -7,14 +7,12 @@ class Devolucao(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
 
-    # Data e horário em que a devolução foi registrada
     data_devolucao = db.Column(
         db.DateTime,
         default=datetime.utcnow,
         nullable=False
     )
 
-    # Identificação do objeto devolvido
     objeto_id = db.Column(
         db.Integer,
         db.ForeignKey('objeto.id'),

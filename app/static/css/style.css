@@ -1,9 +1,3 @@
-/* =================================
-   SISTEMA DE OBJETOS PERDIDOS - IFRN CM
-   CSS PERSONALIZADO
-================================= */
-
-
 /* 1. CORES DO PROJETO */
 :root {
     --cor-vermelha: #BF212E;
@@ -635,3 +629,27 @@ body:has(.pagina-login) .conteudo-principal {
     font-weight: 600;
 }
 
+/* Paginação dos objetos */
+.pagina-objetos .pagination .page-link {
+    color: #343a40;
+    background-color: #fff;
+    border-color: #dee2e6;
+    box-shadow: none;
+}
+
+.pagina-objetos .pagination .page-link:hover {
+    color: #212529;
+    background-color: #f1f1f1;
+    border-color: #dee2e6;
+}
+
+.pagina-objetos .pagination .page-item.active .page-link {
+    color: #fff;
+    background-color: #343a40;
+    border-color: #343a40;
+}
+
+.pagina-objetos .pagination .page-item.disabled .page-link {
+    color: #adb5bd;
+    background-color: #fff;
+}
