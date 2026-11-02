@@ -1,6 +1,7 @@
 from app import db
 from app.models.devolucao import Devolucao
 from app.models.objeto import Objeto
+from datetime import datetime
 
 
 def cadastrar_devolucao(form):
@@ -16,10 +17,11 @@ def cadastrar_devolucao(form):
     devolucao = Devolucao(
         objeto_id=objeto.id,
         nome_objeto=objeto.nome_objeto,
-        nome_aluno=form.nome_aluno.data,
-        matricula_aluno=form.matricula_aluno.data,
-        turma_aluno=form.turma_aluno.data,
-        observacao=form.observacao.data
+        nome_aluno=form.nome_aluno.data.strip(),
+        matricula_aluno=form.matricula_aluno.data.strip(),
+        turma_aluno=form.turma_aluno.data.strip(),
+        observacao=form.observacao.data.strip() or None,
+        data_devolucao=datetime.now()
     )
 
     db.session.add(devolucao)

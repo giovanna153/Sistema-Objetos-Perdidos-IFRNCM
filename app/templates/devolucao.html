@@ -1,4 +1,3 @@
-
 {% extends "base.html" %}
 
 {% block content %}
@@ -7,13 +6,33 @@
 
     <h2 class="fw-bold mb-4">Cadastrar devolução</h2>
 
+    {% if devolucao_registrada %}
+        <div class="alert alert-success">
+            <h5>Devolução registrada com sucesso!</h5>
+
+            <p class="mb-1">
+                <strong>Objeto:</strong>
+                {{ devolucao_registrada.nome_objeto }}
+            </p>
+
+            <p class="mb-1">
+                <strong>Data da devolução:</strong>
+                {{ devolucao_registrada.data_devolucao.strftime('%d/%m/%Y') }}
+            </p>
+
+            <p class="mb-1">
+                <strong>Horário da devolução:</strong>
+                {{ devolucao_registrada.data_devolucao.strftime('%H:%M:%S') }}
+            </p>
+        </div>
+    {% endif %}
+
     <form method="POST">
 
         {{ form.hidden_tag() }}
 
         <div class="mb-3">
             {{ form.objeto_id.label(class="form-label") }}
-
             {{ form.objeto_id(class="form-select") }}
 
             {% for erro in form.objeto_id.errors %}

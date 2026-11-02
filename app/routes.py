@@ -241,33 +241,57 @@ def listar_objetos_cadastrados():
 def devolucao():
 
     form = DevolucaoForm()
+    devolucao_registrada = None
 
-    # Buscar somente objetos que ainda não foram devolvidos
+    # Buscar objetos que ainda não foram devolvidos
     objetos = Objeto.query.outerjoin(Devolucao).filter(
         Devolucao.id.is_(None)
     ).all()
 
     form.objeto_id.choices = [
-        (objeto.id, objeto.nome_objeto)
+        (
+            objeto.id,
+            f"{objeto.nome_objeto} — "
+            f"{objeto.categoria.nome} — "
+            f"{objeto.local.nome} — "
+            f"Encontrado em {objeto.data.strftime('%d/%m/%Y')}"
+        )
         for objeto in objetos
     ]
 
     if form.validate_on_submit():
 
         try:
-            cadastrar_devolucao(form)
+            devolucao_registrada = cadastrar_devolucao(form)
 
-            flash('Devolução registrada com sucesso!', 'success')
-            return redirect(url_for('devolucao'))
+            flash(
+                'Devolução registrada com sucesso!',
+                'success'
+            )
+
+            return render_template(
+                'devolucao.html',
+                form=form,
+                devolucao_registrada=devolucao_registrada
+            )
 
         except Exception as erro:
             db.session.rollback()
-            print("ERRO AO CADASTRAR DEVOLUÇÃO:", repr(erro))
-            flash('Não foi possível registrar a devolução.', 'error')
+
+            print(
+                "ERRO AO CADASTRAR DEVOLUÇÃO:",
+                repr(erro)
+            )
+
+            flash(
+                'Não foi possível registrar a devolução.',
+                'error'
+            )
 
     return render_template(
         'devolucao.html',
-        form=form
+        form=form,
+        devolucao_registrada=devolucao_registrada
     )
 
 @app.route('/admin/devolucoes')
