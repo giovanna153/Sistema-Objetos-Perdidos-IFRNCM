@@ -578,13 +578,60 @@ html, body {
     margin-left: 0;
 }
 
-body:has(.pagina-login) main {
-    min-height: calc(100vh - 98px);
-    background-color: #F2F2F2;
-}
+
 
 /* CARD DE CADASTRO */
 
 .card-login:has(.fa-user-plus) {
     max-width: 460px;
 }
+
+/* RODAPÉ */
+
+/* ESTRUTURA DA PÁGINA */
+
+html, body {
+    min-height: 100%;
+    margin: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.conteudo-principal {
+    flex: 1;
+    padding-top: 80px;
+}
+
+/* FUNDO DA PÁGINA DE LOGIN */
+
+body:has(.pagina-login) .conteudo-principal {
+    background-color: #F2F2F2;
+}
+
+/* RODAPÉ */
+
+.rodape {
+    width: 100%;
+    flex-shrink: 0;
+    background-color: #263F35;
+    color: #FFFFFF;
+    padding: 12px 15px;
+    margin: 0;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.rodape p {
+    margin: 3px 0;
+    font-size: 11px;
+}
+
+.rodape .frase-rodape {
+    font-size: 13px;
+    font-weight: 600;
+}
+
