@@ -1,12 +1,30 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1 class="mb-3">Sistema de Objetos Perdidos do IFRN-CM</h1>
 
-<p>Bem-vindo ao Sistema de Objetos Perdidos do IFRN Campus Ceará-Mirim.</p>
+<section class="banner-principal">
 
-<p>
-    Acesse a página <strong>Objetos encontrados</strong> no menu
-    para consultar os objetos cadastrados no sistema.
-</p>
+    <div class="banner-conteudo">
+
+        <span class="banner-etiqueta">
+            BEM-VINDO AO
+        </span>
+
+        <h1>
+            Sistema de Objetos Perdidos do IFRN Campus Ceará-Mirim
+        </h1>
+
+        <p>
+            Aqui você pode consultar e registrar objetos
+            perdidos e encontrados no campus.
+        </p>    
+
+        <a href="{{ url_for('listar_objetos_cadastrados') }}" class="botao-banner">
+           <i class="fa-solid fa-box-open"></i>
+           Consultar objetos
+        </a>
+    </div>
+
+</section>
+
 {% endblock %}

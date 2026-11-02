@@ -46,3 +46,545 @@
     font-size: 12px;
     margin-right: 4px;
 }
+
+/* =================================
+   BANNER PRINCIPAL
+================================= */
+
+.banner-principal {
+    position: relative;
+    width: 100%;
+    min-height: 360px;
+
+    background-image:
+        linear-gradient(
+            90deg,
+            rgba(242, 242, 242, 0.98) 0%,
+            rgba(242, 242, 242, 0.92) 30%,
+            rgba(242, 242, 242, 0.65) 43%,
+            transparent 65%
+        ),
+        url("../img/campus-ifrn.png");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    display: flex;
+    align-items: center;
+
+    padding: 45px 35px;
+    margin-top: 20px;
+    margin-bottom: 30px;
+    border-radius: 10px;
+}
+
+/* CONTEÚDO DO BANNER */
+
+.banner-conteudo {
+    max-width: 550px;
+    color: #2B443F;
+}
+
+.banner-etiqueta {
+    color: #71A668;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+.banner-conteudo h1 {
+    font-size: 34px;
+    font-weight: 700;
+    margin: 12px 0;
+}
+
+.banner-conteudo p {
+    font-size: 16px;
+    line-height: 1.5;
+    margin-bottom: 25px;
+}
+
+/* BOTÃO CONSULTAR OBJETOS */
+.botao-banner {
+    background-color: #BF212E;
+    color: #FFFFFF;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    display: inline-block;
+}
+
+.botao-banner:hover {
+    background-color: #9E1924;
+    color: #FFFFFF;
+}
+
+/* BARRA DE PESQUISA */
+
+.form-busca {
+    display: flex;
+    align-items: center;
+    background-color: #FFFFFF;
+    border: 1px solid #DDDDDD;
+    border-radius: 12px;
+    padding: 5px 5px 5px 15px;
+    max-width: 550px;
+    min-height: 55px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.form-busca i {
+    color: #2B443F;
+    margin-right: 12px;
+}
+
+.form-busca input {
+    flex: 1;
+    min-width: 0;
+    border: none;
+    outline: none;
+    font-size: 14px;
+    background: transparent;
+}
+
+.form-busca button {
+    border: none;
+    background-color: #BF212E;
+    color: #FFFFFF;
+    padding: 12px 25px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.form-busca button:hover {
+    background-color: #9E1924;
+}
+
+/* RESPONSIVIDADE */
+
+@media (max-width: 768px) {
+
+    .banner-principal {
+        min-height: 380px;
+        padding: 25px 18px;
+
+        background-image:
+            linear-gradient(
+                rgba(242, 242, 242, 0.88),
+                rgba(242, 242, 242, 0.88)
+            ),
+            url("../img/campus-ifrn.png");
+
+        background-position: center;
+    }
+
+    .banner-conteudo h1 {
+        font-size: 26px;
+    }
+
+    .banner-conteudo p {
+        font-size: 14px;
+    }
+
+    .form-busca {
+        width: 100%;
+    }
+
+    .form-busca button {
+        padding: 11px 15px;
+    }
+}
+
+
+/* RESPONSIVIDADE DO BANNER */
+@media (max-width: 768px) {
+    .banner-principal {
+        min-height: 350px;
+        padding: 25px;
+    }
+
+    .banner-conteudo h1 {
+        font-size: 27px;
+    }
+
+    .banner-conteudo p {
+        font-size: 14px;
+    }
+}
+
+
+/* =================================
+   PÁGINA DE OBJETOS ENCONTRADOS
+================================= */
+
+.pagina-objetos {
+    padding-top: 35px;
+    padding-bottom: 50px;
+    color: var(--cor-texto);
+}
+
+/* TÍTULO */
+
+.pagina-objetos h2 {
+    color: #263F35;
+    font-size: 30px;
+    font-weight: 700;
+    margin-bottom: 25px;
+    border-left: 5px solid var(--cor-verde);
+    padding-left: 14px;
+}
+
+/* FILTROS */
+
+.filtros-objetos {
+    background-color: #FFFFFF;
+    border: 1px solid #E8E8E8;
+    border-radius: 12px;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.05);
+}
+
+.filtros-objetos .card-body {
+    padding: 25px;
+}
+
+.filtros-objetos h5 {
+    color: #263F35;
+    font-weight: 700;
+}
+
+.filtros-objetos .form-label {
+    color: var(--cor-texto);
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.filtros-objetos .form-select {
+    border: 1px solid #DADADA;
+    border-radius: 7px;
+    padding: 10px;
+}
+
+.filtros-objetos .form-select:focus {
+    border-color: var(--cor-verde-claro);
+    box-shadow: 0 0 0 0.2rem rgba(113, 166, 104, 0.15);
+}
+
+/* BOTÕES DOS FILTROS */
+
+.filtros-objetos .btn-primary {
+    background-color: var(--cor-vermelha);
+    border-color: var(--cor-vermelha);
+}
+
+.filtros-objetos .btn-primary:hover {
+    background-color: #9E1924;
+    border-color: #9E1924;
+}
+
+.filtros-objetos .btn-secondary {
+    background-color: #747C78;
+    border-color: #747C78;
+}
+
+/* CARDS DOS OBJETOS */
+
+.objeto-card {
+    border: 1px solid #E8E8E8;
+    border-radius: 12px;
+    overflow: hidden;
+    background-color: #FFFFFF;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.05);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.objeto-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.09);
+}
+
+/* FOTOGRAFIAS */
+
+.objeto-card .objeto-foto {
+    width: 100%;
+    height: 220px;
+    object-fit: contain;
+    background-color: #F2F2F2;
+    padding: 10px;
+}
+
+.objeto-card .card-body {
+    padding: 20px;
+}
+
+.objeto-card .card-text {
+    color: #555555;
+    font-size: 14px;
+}
+
+/* BOTÃO VER MAIS */
+
+.objeto-card .btn-primary {
+    background-color: var(--cor-vermelha);
+    border-color: var(--cor-vermelha);
+    border-radius: 7px;
+    font-size: 14px;
+    padding: 10px;
+}
+
+.objeto-card .btn-primary:hover {
+    background-color: #9E1924;
+    border-color: #9E1924;
+}
+
+/* MODAL */
+
+.pagina-objetos .modal-content {
+    border: none;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.pagina-objetos .modal-header {
+    background-color: #F2F2F2;
+    color: #263F35;
+}
+
+.pagina-objetos .modal-title {
+    font-weight: 700;
+}
+
+.pagina-objetos .modal-footer .btn-secondary {
+    background-color: #747C78;
+    border-color: #747C78;
+}
+
+/* CELULAR */
+
+@media (max-width: 768px) {
+    .pagina-objetos h2 {
+        font-size: 25px;
+    }
+
+    .filtros-objetos .card-body {
+        padding: 18px;
+    }
+
+    .objeto-card .objeto-foto {
+        height: 200px;
+    }
+}
+
+/* FOTOGRAFIAS DOS OBJETOS */
+
+.objeto-card .objeto-foto {
+    width: 100%;
+    height: 170px;
+    object-fit: contain;
+    background-color: #F2F2F2;
+    padding: 8px;
+}
+
+.objeto-card .card-body {
+    padding: 12px;
+}
+
+.objeto-card .card-text {
+    font-size: 13px;
+    margin-bottom: 8px;
+}
+
+.objeto-card .btn-primary {
+    font-size: 13px;
+    padding: 8px;
+}
+
+
+/* =================================
+   PÁGINA DE LOGIN
+================================= */
+
+.pagina-login {
+    min-height: 75vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 35px 15px;
+    background-color: #F2F2F2;
+
+    border: none;
+    box-shadow: none;
+    border-radius: 0;
+    width: 100%;
+}
+
+.card-login {
+    width: 100%;
+    max-width: 420px;
+    background-color: #FFFFFF;
+    padding: 35px;
+    border-radius: 14px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.07);
+}
+
+/* CABEÇALHO */
+
+.login-cabecalho {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.login-icone {
+    width: 65px;
+    height: 65px;
+    background-color: #E8F0E8;
+    color: #2B8C3A;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 15px;
+    font-size: 25px;
+}
+
+.login-cabecalho h2 {
+    color: #263F35;
+    font-size: 25px;
+    font-weight: 700;
+}
+
+.login-cabecalho p {
+    color: #777777;
+    font-size: 14px;
+}
+
+/* CAMPOS */
+
+.campo-login {
+    margin-bottom: 20px;
+}
+
+.campo-login label {
+    display: block;
+    color: #26201F;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 7px;
+}
+
+.campo-input {
+    position: relative;
+}
+
+.campo-input i {
+    position: absolute;
+    left: 13px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #71A668;
+    z-index: 2;
+}
+
+.campo-input input {
+    width: 100%;
+    padding: 12px 12px 12px 40px;
+    border: 1px solid #DDDDDD;
+    border-radius: 7px;
+    font-size: 14px;
+}
+
+.campo-input input:focus {
+    border-color: #71A668;
+    box-shadow: 0 0 0 3px rgba(113, 166, 104, 0.15);
+    outline: none;
+}
+
+/* ERROS */
+
+.erro-login {
+    display: block;
+    color: #BF212E;
+    margin-top: 5px;
+    font-size: 12px;
+}
+
+/* BOTÃO */
+
+.botao-login {
+    width: 100%;
+    padding: 12px;
+    background-color: #BF212E;
+    border: none;
+    border-radius: 7px;
+    color: #FFFFFF;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.botao-login:hover {
+    background-color: #9E1924;
+}
+
+/* RODAPÉ */
+
+.login-rodape {
+    margin-top: 25px;
+    padding-top: 18px;
+    border-top: 1px solid #EEEEEE;
+    text-align: center;
+    color: #777777;
+    font-size: 12px;
+}
+
+.login-rodape i {
+    color: #2B8C3A;
+    margin-right: 5px;
+}
+
+/* CELULAR */
+
+@media (max-width: 480px) {
+    .card-login {
+        padding: 25px 20px;
+    }
+}
+
+/* LOGIN - FUNDO DE LARGURA TOTAL */
+
+.pagina-login {
+    width: 100vw;
+    min-height: 75vh;
+    margin-left: calc(50% - 50vw);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: #F2F2F2;
+}
+html, body {
+    overflow-x: hidden;
+}
+
+.pagina-login {
+    width: 100%;
+    margin-left: 0;
+}
+
+body:has(.pagina-login) main {
+    min-height: calc(100vh - 98px);
+    background-color: #F2F2F2;
+}
+
+/* CARD DE CADASTRO */
+
+.card-login:has(.fa-user-plus) {
+    max-width: 460px;
+}
