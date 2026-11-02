@@ -1,97 +1,160 @@
+
 <!DOCTYPE html>
 <html lang="pt-br">
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="" />
-        <meta name="author" content="" />
-        <title>Sistema de Objetos Perdidos - IFRN CM</title>
-        <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='favicon.ico') }}" />
-        <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="{{ url_for('static', filename='css/styles.css') }}" rel="stylesheet" />
-        <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet" />
-        
-    </head>
-    <body id="page-top">
-        <!-- Navigation-->
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
-            <div class="container px-4">
-                <a class="navbar-brand" href="{{ url_for('index') }}">Sistema de Objetos Perdidos IFRN</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-                <div class="collapse navbar-collapse" id="navbarResponsive">
-                    <ul class="navbar-nav ms-auto">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="Sistema de Objetos Perdidos do IFRN Campus Ceará-Mirim." />
+    <meta name="author" content="IFRN Campus Ceará-Mirim" />
+    <title>Sistema de Objetos Perdidos - IFRN CM</title>
+
+    <!-- Links -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='img/favicon.jpg') }}">
+    <link href="{{ url_for('static', filename='css/styles.css') }}" rel="stylesheet" />
+    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet" />
+</head>
+
+<body id="page-top">
+
+    <!-- Navegação -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+        <div class="container px-4">
+
+            <!-- Logo -->
+            <a class="navbar-brand" href="{{ url_for('index') }}">
+                <img
+                    src="{{ url_for('static', filename='img/banner-institucional.png') }}"
+                    alt="Sistema de Objetos Perdidos IFRN"
+                    class="logo-navbar"
+                >
+            </a>
+
+            <!-- Botão do menu para dispositivos móveis -->
+            <button
+                class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarResponsive"
+                aria-controls="navbarResponsive"
+                aria-expanded="false"
+                aria-label="Abrir menu"
+            >
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Links de navegação -->
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ms-auto">
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('index') }}">
+                           <i class="fa-solid fa-house"></i> Início
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('listar_objetos_cadastrados') }}">
+                            <i class="fa-solid fa-box-open"></i>Objetos encontrados
+                        </a>
+                    </li>
+
+                    {% if current_user.is_authenticated %}
+
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ url_for('index') }}">Início</a>
+                            <a class="nav-link" href="{{ url_for('dashboard') }}">
+                                <i class="fa-solid fa-gauge-high"></i> Área do adm
+                            </a>
                         </li>
+
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ url_for('listar_objetos_cadastrados') }}">Objetos encontrados</a>
-                        </li                        
-                        {% if current_user.is_authenticated %}
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ url_for('dashboard') }}">Área do adm</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ url_for('cadastrar_novo_objeto') }}">
-                                    Cadastrar novo objeto
-                                </a>
-                            </li> 
-                              <li class="nav-item">
-                                   <a class="nav-link" href="{{ url_for('cadastro') }}">
-                                    Cadastrar novo usuário
-                                </a>
-                             </li>
-                               <li class="nav-item">
-                                   <a class="nav-link" href="{{ url_for('devolucao') }}">
-                                    Devolução de objeto
-                                </a>
-                             </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ url_for('historico_devolucoes') }}">
-                                    Objetos devolvidos
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ url_for('logout') }}">Sair</a>
-                            </li>
-                        {% else %}
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ url_for('login') }}">Login</a>
-                            </li>
-                        {% endif %}
-                    </ul>
-                </div>
-            </div>
-        </nav>
+                            <a class="nav-link" href="{{ url_for('cadastrar_novo_objeto') }}">
+                                <i class="fa-solid fa-plus"></i> Cadastrar objeto
+                            </a>
+                        </li>
 
-        <!-- Dynamic Content Section -->
-        <main style="padding-top: 80px; min-height: 80vh;">
-            <div class="container px-4">
-                <!-- Flash messages -->
-                {% with messages = get_flashed_messages(with_categories=true) %}
-                    {% if messages %}
-                        {% for category, message in messages %}
-                            <div class="alert alert-{{ category }} alert-dismissible fade show my-3" role="alert">
-                                {{ message }}
-                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                            </div>
-                        {% endfor %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('cadastro') }}">
+                                 <i class="fa-solid fa-user-plus"></i> Cadastrar usuário
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('devolucao') }}">
+                                <i class="fa-solid fa-handshake"></i> Devolução
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('historico_devolucoes') }}">
+                                 <i class="fa-solid fa-clock-rotate-left"></i>  Objetos devolvidos
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('logout') }}">
+                                <i class="fa-solid fa-right-from-bracket"></i> Sair
+                            </a>
+                        </li>
+
+                    {% else %}
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('login') }}">
+                                <i class="fa-solid fa-user"></i> Login
+                            </a>
+                        </li>
+
                     {% endif %}
-                {% endwith %}
 
-                <!-- Bloco de conteúdo injetado -->
-                {% block content %}
-                {% endblock %}
+                </ul>
             </div>
-        </main>
+        </div>
+    </nav>
 
-        <!-- Footer-->
-        <footer class="py-5 bg-dark">
-            <div class="container px-4"><p class="m-0 text-center text-white">IFRN Campus Ceará-Mirim 2026</p></div>
-        </footer>
+    <!-- Conteúdo principal -->
+    <main style="padding-top: 80px; min-height: 80vh;">
+        <div class="container px-4">
 
-        <!-- Bootstrap core JS-->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-        <!-- Core theme JS-->
-        <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
-    </body>
+            <!-- Mensagens do Flask -->
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <div class="alert alert-{{ category }} alert-dismissible fade show my-3" role="alert">
+                            {{ message }}
+
+                            <button
+                                type="button"
+                                class="btn-close"
+                                data-bs-dismiss="alert"
+                                aria-label="Fechar"
+                            ></button>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+
+            <!-- Conteúdo das páginas -->
+            {% block content %}
+            {% endblock %}
+
+        </div>
+    </main>
+
+    <!-- Rodapé -->
+    <footer class="py-5 bg-dark">
+        <div class="container px-4">
+            <p class="m-0 text-center text-white">
+                IFRN Campus Ceará-Mirim 2026
+            </p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- JavaScript do tema -->
+    <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
+
+</body>
 </html>

@@ -1,0 +1,48 @@
+/* =================================
+   SISTEMA DE OBJETOS PERDIDOS - IFRN CM
+   CSS PERSONALIZADO
+================================= */
+
+
+/* 1. CORES DO PROJETO */
+:root {
+    --cor-vermelha: #BF212E;
+    --cor-verde: #2B8C3A;
+    --cor-verde-claro: #71A668;
+    --cor-texto: #26201F;
+    --cor-fundo: #F2F2F2;
+}
+
+
+/* CABEÇALHO */
+#mainNav {
+    background-color: #F2F2F2;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    padding: 10px 0;
+}
+
+.logo-navbar {
+    height: 55px;
+    width: auto;
+    object-fit: contain;
+    max-width: none;
+    object-fit: contain;
+    transform: scale(1.9);
+}
+
+#mainNav .nav-link {
+     color: #26201F;
+    font-size: 13px;
+    font-weight: 500;
+    padding: 8px 10px;
+    transition: color 0.3s ease;
+}
+
+#mainNav .nav-link:hover {
+    color: #BF212E;
+}
+
+#mainNav .navbar-toggler {
+    font-size: 12px;
+    margin-right: 4px;
+}
