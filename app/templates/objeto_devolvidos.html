@@ -1,45 +1,83 @@
-
 {% extends "base.html" %}
 
 {% block content %}
 
 <div class="container py-4">
 
-    <h2 class="fw-bold mb-4">Histórico de Devoluções</h2>
+    <!-- Cabeçalho -->
+    <div class="mb-4">
+        <h2 class="fw-bold mb-1">Histórico de Devoluções</h2>
+        <p class="text-muted mb-0">
+            Consulte os registros de objetos que já foram devolvidos aos seus proprietários.
+        </p>
+    </div>
 
-    <div class="card shadow-sm">
-        <div class="card-body">
+    <div class="card border-0 shadow-sm rounded-3">
+
+        <!-- Cabeçalho do card -->
+        <div class="card-header bg-white border-0 pt-4 px-4">
+            <h5 class="fw-bold mb-1">
+                <i class="fas fa-history text-success me-2"></i>
+                Devoluções registradas
+            </h5>
+            <p class="text-muted small mb-0">
+                Confira os dados dos alunos e os detalhes de cada devolução.
+            </p>
+        </div>
+
+        <div class="card-body p-4">
 
             {% if devolucoes %}
 
             <div class="table-responsive">
-                <table class="table table-hover table-striped align-middle">
+                <table class="table table-hover align-middle mb-0">
 
-                    <thead class="table-dark">
+                    <thead class="table-light">
                         <tr>
-                            <th>Aluno</th>
-                            <th>Matrícula</th>
-                            <th>Turma</th>
-                            <th>Objeto</th>
-                            <th>Data</th>
-                            <th>Observação</th>
+                            <th class="py-3">Aluno</th>
+                            <th class="py-3">Matrícula</th>
+                            <th class="py-3">Turma</th>
+                            <th class="py-3">Objeto</th>
+                            <th class="py-3">Data da devolução</th>
+                            <th class="py-3">Observação</th>
                         </tr>
                     </thead>
 
                     <tbody>
                         {% for devolucao in devolucoes %}
                         <tr>
-                            <td>{{ devolucao.nome_aluno }}</td>
-                            <td>{{ devolucao.matricula_aluno }}</td>
-                            <td>{{ devolucao.turma_aluno }}</td>
-                            <td>{{ devolucao.nome_objeto }}</td>
-
-                            <td>
-                                {{ devolucao.data_devolucao.strftime('%d/%m/%Y %H:%M') }}
+                            <td class="fw-semibold">
+                                {{ devolucao.nome_aluno }}
                             </td>
 
                             <td>
-                                {{ devolucao.observacao or 'Sem observações' }}
+                                {{ devolucao.matricula_aluno }}
+                            </td>
+
+                            <td>
+                                <span class="badge bg-light text-dark border">
+                                    {{ devolucao.turma_aluno }}
+                                </span>
+                            </td>
+
+                            <td>
+                                <i class="fas fa-box text-muted me-1"></i>
+                                {{ devolucao.nome_objeto }}
+                            </td>
+
+                            <td>
+                                <i class="far fa-calendar-alt text-muted me-1"></i>
+                                {{ devolucao.data_devolucao.strftime('%d/%m/%Y') }}
+                                <br>
+                                <small class="text-muted">
+                                    {{ devolucao.data_devolucao.strftime('%H:%M') }}
+                                </small>
+                            </td>
+
+                            <td>
+                                <span class="text-muted">
+                                    {{ devolucao.observacao or 'Sem observações' }}
+                                </span>
                             </td>
                         </tr>
                         {% endfor %}
@@ -50,19 +88,21 @@
 
             {% else %}
 
-            <div class="alert alert-info">
-                Nenhuma devolução foi registada até ao momento.
+            <!-- Estado vazio -->
+            <div class="text-center py-5">
+                <i class="fas fa-clipboard-list fa-3x text-muted mb-3"></i>
+
+                <h5 class="fw-bold">Nenhuma devolução registrada</h5>
+
+                <p class="text-muted mb-0">
+                    Ainda não existem registros de objetos devolvidos no sistema.
+                </p>
             </div>
 
             {% endif %}
 
         </div>
     </div>
-
-    <a href="{{ url_for('index') }}"
-       class="btn btn-secondary mt-3">
-        Voltar
-    </a>
 
 </div>
 

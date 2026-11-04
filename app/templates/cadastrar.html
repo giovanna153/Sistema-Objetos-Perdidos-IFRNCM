@@ -2,152 +2,208 @@
 {% extends "base.html" %}
 
 {% block content %}
+
 <div class="container py-4">
+
+    <!-- Cabeçalho -->
+    <div class="mb-4">
+        <h2 class="fw-bold mb-1">Cadastrar objeto encontrado</h2>
+        <p class="text-muted mb-0">
+            Preencha os dados abaixo para cadastrar um objeto encontrado no campus.
+        </p>
+    </div>
+
     <div class="row justify-content-center">
-        <div class="col-lg-9">
+        <div class="col-lg-9 col-xl-8">
 
-            <div class="mb-4">
-                <h1 class="fw-bold">Cadastrar objeto encontrado</h1>
-                <p class="text-secondary">
-                    Preencha os dados abaixo para cadastrar um objeto encontrado no campus.
-                </p>
-            </div>
+            <!-- Formulário -->
+            <div class="card border-0 shadow-sm rounded-3">
 
-            <div class="card border-0 shadow-sm">
-                <div class="card-body p-4 p-md-5">
+                <div class="card-header bg-white border-0 pt-4 px-4">
+                    <h5 class="fw-bold mb-1">
+                        <i class="fas fa-box-open text-success me-2"></i>
+                        Informações do objeto
+                    </h5>
+                    <p class="text-muted small mb-0">
+                        Informe as características e a localização do objeto encontrado.
+                    </p>
+                </div>
+
+                <div class="card-body p-4">
 
                     <form method="POST" enctype="multipart/form-data">
+
                         {{ form.hidden_tag() }}
 
-                        <h5 class="fw-bold mb-3">Informações do objeto</h5>
-                        <hr class="mb-4">
-
+                        <!-- Dados do objeto -->
                         <div class="mb-3">
                             {{ form.nome.label(class="form-label fw-semibold") }}
-                            {{ form.nome(class="form-control form-control-lg", placeholder="Ex.: Caderno, mochila ou celular") }}
+                            {{ form.nome(class="form-control", placeholder="Ex.: Caderno, mochila ou celular") }}
+
                             {% for erro in form.nome.errors %}
                                 <div class="text-danger small mt-1">{{ erro }}</div>
                             {% endfor %}
                         </div>
 
-                        <div class="mb-3">
+                        <div class="mb-4">
                             {{ form.descricao.label(class="form-label fw-semibold") }}
                             {{ form.descricao(class="form-control", rows="3", placeholder="Informe a cor, a marca e outras características") }}
+
                             {% for erro in form.descricao.errors %}
                                 <div class="text-danger small mt-1">{{ erro }}</div>
                             {% endfor %}
                         </div>
 
-                        <div class="mb-4">
-                            <label class="form-label fw-semibold">Foto do objeto</label>
+                        <hr class="my-4">
 
-                            <div class="mb-2">
-                                <label class="form-label">Tirar foto (celular)</label>
-                                <input
-                                    type="file"
-                                    name="foto_camera"
-                                    class="form-control"
-                                    accept="image/*"
-                                    capture="environment"
-                                >
-                            </div>
+                        <!-- Foto -->
+                        <h6 class="fw-bold mb-3">
+                            <i class="fas fa-camera text-success me-2"></i>
+                            Foto do objeto
+                        </h6>
 
-                            <div class="mb-2">
-                                <label class="form-label">Escolher imagem</label>
-                                <input
-                                    type="file"
-                                    name="foto_galeria"
-                                    class="form-control"
-                                    accept="image/*"
-                                >
-                            </div>
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold">Tirar foto (celular)</label>
+                            <input
+                                type="file"
+                                name="foto_camera"
+                                class="form-control"
+                                accept="image/*"
+                                capture="environment"
+                            >
+                        </div>
 
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold">Escolher imagem</label>
+                            <input
+                                type="file"
+                                name="foto_galeria"
+                                class="form-control"
+                                accept="image/*"
+                            >
                             <div class="form-text">
+                                <i class="fas fa-info-circle me-1"></i>
                                 Formatos aceitos: JPG e PNG.
                             </div>
                         </div>
 
-                        <div class="row">
-                            <div class="col-md-6 mb-3">
+                        <hr class="my-4">
+
+                        <!-- Data e categoria -->
+                        <h6 class="fw-bold mb-3">
+                            <i class="fas fa-calendar-alt text-success me-2"></i>
+                            Data e classificação
+                        </h6>
+
+                        <div class="row g-3">
+
+                            <div class="col-md-6">
                                 {{ form.data.label(class="form-label fw-semibold") }}
                                 {{ form.data(class="form-control") }}
+
                                 {% for erro in form.data.errors %}
                                     <div class="text-danger small mt-1">{{ erro }}</div>
                                 {% endfor %}
                             </div>
 
-                            
-                            <div class="col-md-6 mb-3">
+                            <div class="col-md-6">
                                 {{ form.categoria_id.label(class="form-label fw-semibold") }}
                                 {{ form.categoria_id(class="form-select") }}
+
                                 {% for erro in form.categoria_id.errors %}
                                     <div class="text-danger small mt-1">{{ erro }}</div>
                                 {% endfor %}
                             </div>
+
                         </div>
+
+                        <hr class="my-4">
+
+                        <!-- Localização -->
+                        <h6 class="fw-bold mb-3">
+                            <i class="fas fa-map-marker-alt text-success me-2"></i>
+                            Local onde foi encontrado
+                        </h6>
 
                         <div class="mb-3">
                             {{ form.local_id.label(class="form-label fw-semibold") }}
                             {{ form.local_id(class="form-select") }}
+
                             {% for erro in form.local_id.errors %}
                                 <div class="text-danger small mt-1">{{ erro }}</div>
                             {% endfor %}
                         </div>
 
-
                         <div class="mb-4">
                             {{ form.detalhes_local.label(class="form-label fw-semibold") }}
                             {{ form.detalhes_local(class="form-control", placeholder="Ex.: sala 3, corredor do segundo andar ou perto da cantina") }}
+
                             {% for erro in form.detalhes_local.errors %}
                                 <div class="text-danger small mt-1">{{ erro }}</div>
                             {% endfor %}
                         </div>
 
-                        <h5 class="fw-bold mb-3">Informações de quem encontrou</h5>
-                        <hr class="mb-4">
+                        <hr class="my-4">
+
+                        <!-- Dados de quem encontrou -->
+                        <h6 class="fw-bold mb-3">
+                            <i class="fas fa-user text-success me-2"></i>
+                            Informações de quem encontrou
+                        </h6>
 
                         <div class="mb-3">
                             {{ form.nome_encontrou.label(class="form-label fw-semibold") }}
-                            {{ form.nome_encontrou(class="form-control", placeholder="Nome completo") }}
+                            {{ form.nome_encontrou(class="form-control", placeholder="Digite o nome completo") }}
+
                             {% for erro in form.nome_encontrou.errors %}
                                 <div class="text-danger small mt-1">{{ erro }}</div>
                             {% endfor %}
                         </div>
 
-                        <div class="row">
-                            <div class="col-md-6 mb-3">
+                        <div class="row g-3">
+
+                            <div class="col-md-6">
                                 {{ form.matricula.label(class="form-label fw-semibold") }}
-                                {{ form.matricula(class="form-control", placeholder="Número da matrícula") }}
+                                {{ form.matricula(class="form-control", placeholder="Digite a matrícula") }}
+
                                 {% for erro in form.matricula.errors %}
                                     <div class="text-danger small mt-1">{{ erro }}</div>
                                 {% endfor %}
                             </div>
 
-                            <div class="col-md-6 mb-3">
+                            <div class="col-md-6">
                                 {{ form.turma.label(class="form-label fw-semibold") }}
                                 {{ form.turma(class="form-control", placeholder="Ex.: INFO 3M") }}
+
                                 {% for erro in form.turma.errors %}
                                     <div class="text-danger small mt-1">{{ erro }}</div>
                                 {% endfor %}
                             </div>
+
                         </div>
 
-                        <div class="d-flex flex-column flex-sm-row justify-content-end gap-2 mt-4">
-                            <a href="{{ url_for('index') }}" class="btn btn-outline-secondary px-4">
-                                Cancelar
-                            </a>
-                            {{ form.submit(class="btn btn-dark btn-lg px-4") }}
+                        <hr class="my-4">
+
+                        <!-- Botão -->
+                        <div class="d-flex justify-content-end">
+                            {{ form.submit(class="btn btn-danger px-4 py-2 fw-semibold") }}
                         </div>
+
 
                     </form>
+
                 </div>
             </div>
 
-            <p class="text-secondary small mt-3">
+            <p class="text-muted small mt-3">
+                <i class="fas fa-info-circle me-1"></i>
                 Confira as informações antes de cadastrar o objeto.
             </p>
 
         </div>
     </div>
+
 </div>
+
 {% endblock %}
+```

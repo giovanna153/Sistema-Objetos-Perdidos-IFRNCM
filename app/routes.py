@@ -71,13 +71,33 @@ def logout():
 
 
 @app.route("/dashboard")
-@login_required #Só pode acessar /dashboard quem estiver autenticado.
+@login_required
 def dashboard():
-    return render_template("dashboard.html")
 
+    total_objetos = Objeto.query.count()
 
+    total_disponiveis = Objeto.query.filter(
+        ~Objeto.devolucao.has()
+    ).count()
 
+    total_devolvidos = Devolucao.query.count()
 
+    ultimos_objetos = Objeto.query.order_by(
+        Objeto.id.desc()
+    ).limit(5).all()
+
+    ultimas_devolucoes = Devolucao.query.order_by(
+        Devolucao.data_devolucao.desc()
+    ).limit(5).all()
+
+    return render_template(
+        "dashboard.html",
+        total_objetos=total_objetos,
+        total_disponiveis=total_disponiveis,
+        total_devolvidos=total_devolvidos,
+        ultimos_objetos=ultimos_objetos,
+        ultimas_devolucoes=ultimas_devolucoes
+    )
 
 
 @app.route("/objetos/cadastrar", methods=["GET", "POST"])
