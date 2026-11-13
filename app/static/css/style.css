@@ -1,9 +1,8 @@
-/* 1. CORES DO PROJETO */
 :root {
     --cor-verde: #347A4B;
     --cor-verde-claro: #71A668;
     --cor-texto: #26201F;
-    --cor-fundo: #F2F2F2;
+    --cor-fundo: #dcf0ca;
 }
 
 
@@ -36,9 +35,7 @@
     margin-right: 4px;
 }
 
-/* =================================
-   BANNER PRINCIPAL
-================================= */
+/*BANNER PRINCIPAL*/
 
 .banner-principal {
     position: relative;
@@ -208,9 +205,7 @@
 }
 
 
-/* =================================
-   PÁGINA DE OBJETOS ENCONTRADOS
-================================= */
+/*PÁGINA DE OBJETOS ENCONTRADOS*/
 
 .pagina-objetos {
     padding-top: 35px;
@@ -372,9 +367,7 @@
     }
 }
 
-/* =================================
-   PÁGINA DE LOGIN
-================================= */
+/* PÁGINA DE LOGIN*/
 
 .pagina-login {
     min-height: 75vh;
@@ -555,8 +548,6 @@ html, body {
 
 /* RODAPÉ */
 
-/* ESTRUTURA DA PÁGINA */
-
 html, body {
     min-height: 100%;
     margin: 0;
@@ -673,12 +664,6 @@ body:has(.pagina-login) .conteudo-principal {
     box-shadow: 0 0 0 0.2rem rgba(52, 122, 75, 0.25) !important;
 }
 
-
-
-/* =================================
-   NAVBAR - EFEITO DE ABA ATIVA
-================================= */
-
 #mainNav .navbar-nav .nav-link {
     border-radius: 10px 10px 0 0;
     padding: 10px 11px;
@@ -700,7 +685,6 @@ body:has(.pagina-login) .conteudo-principal {
     color: #347A4B;
 }
 
-/* Efeito ao passar o mouse */
 #mainNav .navbar-nav .nav-link:not(.active):hover {
     background-color: rgba(255, 255, 255, 0.65);
     border-radius: 10px 10px 0 0;

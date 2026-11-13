@@ -146,4 +146,4 @@ flask db migrate -m "criar tabelas"
 flask db upgrade 
 flask run --debug
 
-
+flask run --host=0.0.0.0 --port=5000
