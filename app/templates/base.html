@@ -48,46 +48,60 @@
                 <ul class="navbar-nav ms-auto">
 
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('index') }}">
-                           <i class="fa-solid fa-house"></i> Início
+                        <a class="nav-link {% if request.endpoint == 'index' %}active{% endif %}"
+                           href="{{ url_for('index') }}"
+                           {% if request.endpoint == 'index' %}aria-current="page"{% endif %}>
+                            <i class="fa-solid fa-house"></i> Início
                         </a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('listar_objetos_cadastrados') }}">
-                            <i class="fa-solid fa-box-open"></i>Objetos encontrados
+                        <a class="nav-link {% if request.endpoint == 'listar_objetos_cadastrados' %}active{% endif %}"
+                           href="{{ url_for('listar_objetos_cadastrados') }}"
+                           {% if request.endpoint == 'listar_objetos_cadastrados' %}aria-current="page"{% endif %}>
+                            <i class="fa-solid fa-box-open"></i> Objetos encontrados
                         </a>
                     </li>
 
                     {% if current_user.is_authenticated %}
 
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ url_for('dashboard') }}">
+                            <a class="nav-link {% if request.endpoint == 'dashboard' %}active{% endif %}"
+                               href="{{ url_for('dashboard') }}"
+                               {% if request.endpoint == 'dashboard' %}aria-current="page"{% endif %}>
                                 <i class="fa-solid fa-gauge-high"></i> Área do adm
                             </a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ url_for('cadastrar_novo_objeto') }}">
+                            <a class="nav-link {% if request.endpoint == 'cadastrar_novo_objeto' %}active{% endif %}"
+                               href="{{ url_for('cadastrar_novo_objeto') }}"
+                               {% if request.endpoint == 'cadastrar_novo_objeto' %}aria-current="page"{% endif %}>
                                 <i class="fa-solid fa-plus"></i> Cadastrar objeto
                             </a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ url_for('cadastro') }}">
-                                 <i class="fa-solid fa-user-plus"></i> Cadastrar usuário
+                            <a class="nav-link {% if request.endpoint == 'cadastro' %}active{% endif %}"
+                               href="{{ url_for('cadastro') }}"
+                               {% if request.endpoint == 'cadastro' %}aria-current="page"{% endif %}>
+                                <i class="fa-solid fa-user-plus"></i> Cadastrar usuário
                             </a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ url_for('devolucao') }}">
+                            <a class="nav-link {% if request.endpoint == 'devolucao' %}active{% endif %}"
+                               href="{{ url_for('devolucao') }}"
+                               {% if request.endpoint == 'devolucao' %}aria-current="page"{% endif %}>
                                 <i class="fa-solid fa-handshake"></i> Devolução
                             </a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ url_for('historico_devolucoes') }}">
-                                 <i class="fa-solid fa-clock-rotate-left"></i>  Objetos devolvidos
+                            <a class="nav-link {% if request.endpoint == 'historico_devolucoes' %}active{% endif %}"
+                               href="{{ url_for('historico_devolucoes') }}"
+                               {% if request.endpoint == 'historico_devolucoes' %}aria-current="page"{% endif %}>
+                                <i class="fa-solid fa-clock-rotate-left"></i> Objetos devolvidos
                             </a>
                         </li>
 
@@ -100,7 +114,9 @@
                     {% else %}
 
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ url_for('login') }}">
+                            <a class="nav-link {% if request.endpoint == 'login' %}active{% endif %}"
+                               href="{{ url_for('login') }}"
+                               {% if request.endpoint == 'login' %}aria-current="page"{% endif %}>
                                 <i class="fa-solid fa-user"></i> Login
                             </a>
                         </li>
@@ -144,22 +160,17 @@
     <!-- Rodapé -->
     <footer class="rodape">
         <p class="frase-rodape">
-
             Sistema de Objetos Perdidos
-
         </p>
 
         <p>
             IFRN - Campus Ceará-Mirim
         </p>
 
-        <p> Juntos por um campus mais organizado.</p>
-            
-    
+        <p>Juntos por um campus mais organizado.</p>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-
     <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
 
 </body>

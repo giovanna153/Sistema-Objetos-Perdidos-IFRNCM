@@ -1,7 +1,6 @@
 /* 1. CORES DO PROJETO */
 :root {
-    --cor-vermelha: #BF212E;
-    --cor-verde: #2B8C3A;
+    --cor-verde: #347A4B;
     --cor-verde-claro: #71A668;
     --cor-texto: #26201F;
     --cor-fundo: #F2F2F2;
@@ -30,10 +29,6 @@
     font-weight: 500;
     padding: 8px 10px;
     transition: color 0.3s ease;
-}
-
-#mainNav .nav-link:hover {
-    color: #BF212E;
 }
 
 #mainNav .navbar-toggler {
@@ -101,7 +96,7 @@
 
 /* BOTÃO CONSULTAR OBJETOS */
 .botao-banner {
-    background-color: #BF212E;
+    background-color: #347A4B;
     color: #FFFFFF;
     border: none;
     padding: 12px 25px;
@@ -113,7 +108,7 @@
 }
 
 .botao-banner:hover {
-    background-color: #9E1924;
+    background-color: #2C6840;
     color: #FFFFFF;
 }
 
@@ -147,7 +142,7 @@
 
 .form-busca button {
     border: none;
-    background-color: #BF212E;
+    background-color: #347A4B;
     color: #FFFFFF;
     padding: 12px 25px;
     border-radius: 8px;
@@ -157,7 +152,7 @@
 }
 
 .form-busca button:hover {
-    background-color: #9E1924;
+    background-color: #2C6840;
 }
 
 /* RESPONSIVIDADE */
@@ -272,13 +267,13 @@
 /* BOTÕES DOS FILTROS */
 
 .filtros-objetos .btn-primary {
-    background-color: var(--cor-vermelha);
-    border-color: var(--cor-vermelha);
+    background-color: var(--cor-verde);
+    border-color: var(--cor-verde);
 }
 
 .filtros-objetos .btn-primary:hover {
-    background-color: #9E1924;
-    border-color: #9E1924;
+    background-color: #2C6840;
+    border-color: #2C6840;
 }
 
 .filtros-objetos .btn-secondary {
@@ -289,6 +284,7 @@
 /* CARDS DOS OBJETOS */
 
 .objeto-card {
+    height: 100%;
     border: 1px solid #E8E8E8;
     border-radius: 12px;
     overflow: hidden;
@@ -305,35 +301,37 @@
 /* FOTOGRAFIAS */
 
 .objeto-card .objeto-foto {
+    display: block;
     width: 100%;
-    height: 220px;
+    height: 160px;
     object-fit: contain;
     background-color: #F2F2F2;
-    padding: 10px;
+    padding: 8px;
 }
 
 .objeto-card .card-body {
-    padding: 20px;
+    padding: 12px;
 }
 
 .objeto-card .card-text {
     color: #555555;
-    font-size: 14px;
+    font-size: 13px;
+    margin-bottom: 8px;
 }
 
 /* BOTÃO VER MAIS */
 
 .objeto-card .btn-primary {
-    background-color: var(--cor-vermelha);
-    border-color: var(--cor-vermelha);
+    background-color: var(--cor-verde);
+    border-color: var(--cor-verde);
     border-radius: 7px;
-    font-size: 14px;
-    padding: 10px;
+    font-size: 13px;
+    padding: 8px 10px;
 }
 
 .objeto-card .btn-primary:hover {
-    background-color: #9E1924;
-    border-color: #9E1924;
+    background-color: #2C6840;
+    border-color: #2C6840;
 }
 
 /* MODAL */
@@ -358,7 +356,7 @@
     border-color: #747C78;
 }
 
-/* CELULAR */
+/* AJUSTES RESPONSIVOS DOS CARDS */
 
 @media (max-width: 768px) {
     .pagina-objetos h2 {
@@ -370,34 +368,9 @@
     }
 
     .objeto-card .objeto-foto {
-        height: 200px;
+        height: 160px;
     }
 }
-
-/* FOTOGRAFIAS DOS OBJETOS */
-
-.objeto-card .objeto-foto {
-    width: 100%;
-    height: 170px;
-    object-fit: contain;
-    background-color: #F2F2F2;
-    padding: 8px;
-}
-
-.objeto-card .card-body {
-    padding: 12px;
-}
-
-.objeto-card .card-text {
-    font-size: 13px;
-    margin-bottom: 8px;
-}
-
-.objeto-card .btn-primary {
-    font-size: 13px;
-    padding: 8px;
-}
-
 
 /* =================================
    PÁGINA DE LOGIN
@@ -512,7 +485,7 @@
 .botao-login {
     width: 100%;
     padding: 12px;
-    background-color: #BF212E;
+    background-color: #347A4B;
     border: none;
     border-radius: 7px;
     color: #FFFFFF;
@@ -523,7 +496,7 @@
 }
 
 .botao-login:hover {
-    background-color: #9E1924;
+    background-color: #2C6840;
 }
 
 /* RODAPÉ */
@@ -652,4 +625,103 @@ body:has(.pagina-login) .conteudo-principal {
 .pagina-objetos .pagination .page-item.disabled .page-link {
     color: #adb5bd;
     background-color: #fff;
+}
+
+.btn-danger {
+    background-color: #347A4B;
+    border-color: #347A4B;
+}
+
+.btn-danger:hover,
+.btn-danger:focus,
+.btn-danger:active {
+    background-color: #2C6840;
+    border-color: #2C6840;
+}
+
+.btn-danger:focus,
+.btn-danger:focus-visible,
+.btn-danger:active,
+.btn-danger.active,
+.show > .btn-danger.dropdown-toggle,
+.filtros-objetos .btn-primary:focus,
+.filtros-objetos .btn-primary:focus-visible,
+.filtros-objetos .btn-primary:active,
+.filtros-objetos .btn-primary.active,
+.objeto-card .btn-primary:focus,
+.objeto-card .btn-primary:focus-visible,
+.objeto-card .btn-primary:active,
+.objeto-card .btn-primary.active {
+    background-color: #245B38 !important;
+    border-color: #245B38 !important;
+    color: #FFFFFF !important;
+    box-shadow: 0 0 0 0.2rem rgba(52, 122, 75, 0.25) !important;
+}
+
+.botao-banner:focus,
+.botao-banner:focus-visible,
+.botao-banner:active,
+.form-busca button:focus,
+.form-busca button:focus-visible,
+.form-busca button:active,
+.botao-login:focus,
+.botao-login:focus-visible,
+.botao-login:active {
+    background-color: #245B38 !important;
+    border-color: #245B38 !important;
+    color: #FFFFFF !important;
+    box-shadow: 0 0 0 0.2rem rgba(52, 122, 75, 0.25) !important;
+}
+
+
+
+/* =================================
+   NAVBAR - EFEITO DE ABA ATIVA
+================================= */
+
+#mainNav .navbar-nav .nav-link {
+    border-radius: 10px 10px 0 0;
+    padding: 10px 11px;
+    margin: 0 2px;
+    transition: all 0.25s ease;
+}
+
+/* Aba da página atual */
+#mainNav .navbar-nav .nav-link.active {
+    background-color: #FFFFFF;
+    color: #347A4B !important;
+    font-weight: 700;
+    box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.10);
+    transform: translateY(-3px);
+}
+
+/* Ícone da aba ativa */
+#mainNav .navbar-nav .nav-link.active i {
+    color: #347A4B;
+}
+
+/* Efeito ao passar o mouse */
+#mainNav .navbar-nav .nav-link:not(.active):hover {
+    background-color: rgba(255, 255, 255, 0.65);
+    border-radius: 10px 10px 0 0;
+    transform: translateY(-2px);
+}
+
+/* Ajuste para celulares */
+@media (max-width: 991px) {
+    #mainNav .navbar-nav .nav-link {
+        border-radius: 8px;
+        margin: 3px 0;
+    }
+
+    #mainNav .navbar-nav .nav-link.active {
+        border-radius: 8px;
+        transform: none;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.10);
+    }
+
+    #mainNav .navbar-nav .nav-link:not(.active):hover {
+        border-radius: 8px;
+        transform: none;
+    }
 }
