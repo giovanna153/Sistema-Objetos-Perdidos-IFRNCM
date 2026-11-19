@@ -205,6 +205,8 @@
 }
 
 
+
+
 /*PÁGINA DE OBJETOS ENCONTRADOS*/
 
 .pagina-objetos {
@@ -293,6 +295,16 @@
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.09);
 }
 
+.objeto-card {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: flex-start !important;
+    align-items: stretch !important;
+    height: auto !important;
+    min-height: 0 !important;
+    padding: 0 !important;
+}
+
 /* FOTOGRAFIAS */
 
 .objeto-card .objeto-foto {
@@ -305,13 +317,21 @@
 }
 
 .objeto-card .card-body {
-    padding: 12px;
+    padding: 16px;
 }
 
 .objeto-card .card-text {
     color: #555555;
     font-size: 13px;
     margin-bottom: 8px;
+}
+
+.objeto-card > .objeto-foto,
+.objeto-card > .sem-foto {
+    margin-top: 0 !important;
+    position: static !important;
+    flex: 0 0 245px !important;
+    height: 245px !important;
 }
 
 /* BOTÃO VER MAIS */

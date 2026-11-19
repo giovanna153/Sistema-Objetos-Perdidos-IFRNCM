@@ -150,11 +150,11 @@
 
     {% if objetos.items %}
 
-        <div class="row g-4">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-5 g-4">
 
             {% for objeto in objetos.items %}
 
-                <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                <div class="col">
 
                     <section class="card objeto-card h-100">
 
@@ -164,12 +164,12 @@
                                 src="{{ url_for('static', filename=objeto.foto) }}"
                                 class="card-img-top objeto-foto"
                                 alt="Foto de {{ objeto.nome_objeto }}"
-                                style="height: 220px; object-fit: contain; background-color: #f8f9fa;"
+                                style="height: 280px; object-fit: contain; background-color: #f8f9fa;"
                             >
                         {% else %}
                             <div
                                 class="d-flex align-items-center justify-content-center bg-light text-secondary"
-                                style="height: 220px;"
+                                style="height: 280px;"
                             >
                                 Sem foto disponível
                             </div>
