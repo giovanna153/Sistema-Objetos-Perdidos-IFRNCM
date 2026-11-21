@@ -729,3 +729,55 @@ body:has(.pagina-login) .conteudo-principal {
         transform: none;
     }
 }
+
+/* LOGO PARA CELULAR */
+.logo-mobile {
+    display: none;
+}
+
+@media (max-width: 991.98px) {
+    #mainNav {
+        padding-top: 6px;
+        padding-bottom: 6px;
+    }
+
+   
+    #mainNav .container,
+    #mainNav .container-fluid {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .navbar-brand .logo-navbar {
+        display: none !important;
+    }
+
+    .navbar-brand {
+        margin: 0 !important;
+        padding: 0 !important;
+        
+        max-width: calc(100% - 55px); 
+    }
+
+    .navbar-brand .logo-mobile {
+        display: block !important;
+        width: auto;              
+        max-width: 100%;          
+        height: 54px;             
+        object-fit: contain;
+        object-position: left center;
+    }
+
+    #mainNav .navbar-toggler {
+        padding: 4px 8px;
+        font-size: 14px;
+        margin: 0;
+    }
+
+    
+    .conteudo-principal {
+        padding-top: 60px; 
+    }
+}
